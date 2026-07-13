@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Leaf, Instagram, Telegram, MessageCircle } from "lucide-react";
+import { Leaf, MessageCircle, Send, Camera } from "lucide-react";
 
 export function Footer() {
   return (
@@ -21,10 +21,10 @@ export function Footer() {
             </p>
             <div className="flex items-center gap-3">
               <a href="#" className="w-9 h-9 rounded-lg border border-border flex items-center justify-center hover:border-emerald-500/50 hover:text-emerald-500 transition-all">
-                <Instagram className="w-4 h-4" />
+                <Camera className="w-4 h-4" />
               </a>
               <a href="#" className="w-9 h-9 rounded-lg border border-border flex items-center justify-center hover:border-emerald-500/50 hover:text-emerald-500 transition-all">
-                <Telegram className="w-4 h-4" />
+                <Send className="w-4 h-4" />
               </a>
               <a href="#" className="w-9 h-9 rounded-lg border border-border flex items-center justify-center hover:border-emerald-500/50 hover:text-emerald-500 transition-all">
                 <MessageCircle className="w-4 h-4" />
