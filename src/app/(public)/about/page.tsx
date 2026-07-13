@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
 import {
-  Leaf, Users, ShoppingBag, Star, TrendingUp, Target,
+  Leaf, Package, Users, ShoppingBag, Star, TrendingUp, Target,
   Shield, MessageCircle, ArrowRight, BadgeCheck,
 } from "lucide-react";
 
