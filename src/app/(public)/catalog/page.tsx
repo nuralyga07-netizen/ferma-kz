@@ -19,7 +19,6 @@ const SAMPLE_PRODUCTS = [
   { id: 6, name: "Мёд разнотравье", farmer: "Пасека «Бал»", price: 2500, unit: "кг", rating: 4.9, orders: 89, image: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?w=400&h=300&fit=crop", category: "Мёд и сладости", organic: true },
   { id: 7, name: "Яйца домашние", farmer: "КХ «Атамекен»", price: 500, unit: "дес.", rating: 4.7, orders: 234, image: "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&h=300&fit=crop", category: "Яйца", organic: true },
   { id: 8, name: "Сметана 30%", farmer: "ИП «Беркут»", price: 600, unit: "кг", rating: 4.8, orders: 112, image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop", category: "Молочные продукты", organic: true },
-];
   { id: 9, name: "Баранина свежая", farmer: "Ферма «Кусжол»", price: 2500, unit: "кг", rating: 4.8, orders: 73, image: "https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=400&h=300&fit=crop", category: "Мясо и птица", organic: false },
   { id: 10, name: "Масло сливочное", farmer: "Ферма «Акжол»", price: 1500, unit: "кг", rating: 4.9, orders: 88, image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&h=300&fit=crop", category: "Молочные продукты", organic: true },
   { id: 11, name: "Помидоры", farmer: "КХ «Атамекен»", price: 400, unit: "кг", rating: 4.5, orders: 145, image: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&h=300&fit=crop", category: "Овощи", organic: true },
