@@ -18,12 +18,12 @@ const itemVariants = {
 };
 
 const categories = [
-  { name: "Мясо и птица", icon: Wheat, color: "from-red-500/20 to-red-500/5" },
-  { name: "Молочные продукты", icon: Droplets, color: "from-blue-500/20 to-blue-500/5" },
-  { name: "Овощи", icon: Apple, color: "from-green-500/20 to-green-500/5" },
-  { name: "Яйца", icon: Egg, color: "from-amber-500/20 to-amber-500/5" },
-  { name: "Мёд", icon: ShoppingBag, color: "from-yellow-500/20 to-yellow-500/5" },
-  { name: "Домашняя выпечка", icon: Wheat, color: "from-orange-500/20 to-orange-500/5" },
+  { name: "Мясо и птица", icon: Wheat, color: "from-red-500/20 to-red-500/5", image: "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=400&h=300&fit=crop" },
+  { name: "Молочные продукты", icon: Droplets, color: "from-blue-500/20 to-blue-500/5", image: "https://images.unsplash.com/photo-1628088062854-b1870b58a6c6?w=400&h=300&fit=crop" },
+  { name: "Овощи", icon: Apple, color: "from-green-500/20 to-green-500/5", image: "https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?w=400&h=300&fit=crop" },
+  { name: "Яйца", icon: Egg, color: "from-amber-500/20 to-amber-500/5", image: "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&h=300&fit=crop" },
+  { name: "Мёд", icon: ShoppingBag, color: "from-yellow-500/20 to-yellow-500/5", image: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?w=400&h=300&fit=crop" },
+  { name: "Домашняя выпечка", icon: Wheat, color: "from-orange-500/20 to-orange-500/5", image: "https://images.unsplash.com/photo-1557925923-69e0e59e29e4?w=400&h=300&fit=crop" },
 ];
 
 const steps = [
@@ -253,12 +253,19 @@ export default function HomePage() {
               <motion.div
                 key={cat.name}
                 whileHover={{ y: -4, scale: 1.02 }}
-                className="glass-card rounded-2xl p-6 text-center cursor-pointer group"
+                className="glass-card rounded-2xl overflow-hidden cursor-pointer group"
               >
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${cat.color} flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300`}>
-                  <cat.icon className="w-6 h-6 text-emerald-600" />
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img 
+                    src={cat.image} 
+                    alt={cat.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
                 </div>
-                <span className="text-sm font-medium">{cat.name}</span>
+                <div className="p-4 text-center">
+                  <span className="text-base font-semibold">{cat.name}</span>
+                </div>
               </motion.div>
             ))}
           </div>
