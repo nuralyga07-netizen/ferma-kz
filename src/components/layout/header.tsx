@@ -10,7 +10,7 @@ import { useCartStore } from "@/store/cart-store";
 const navLinks = [
   { href: "/catalog", label: "Каталог" },
   { href: "/#how-it-works", label: "Как это работает" },
-  { href: "/#farmers", label: "Фермеры" },
+  { href: "/farmer/apply", label: "Стать фермером" },
   { href: "/#faq", label: "FAQ" },
 ];
 
