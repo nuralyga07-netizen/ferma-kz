@@ -37,8 +37,8 @@ const navItems: NavItem[] = [
 ];
 
 const sidebarVariants = {
-  open: { width: 260, transition: { duration: 0.3, ease: "easeInOut" } },
-  closed: { width: 72, transition: { duration: 0.3, ease: "easeInOut" } },
+  open: { width: 260, transition: { duration: 0.3, ease: "easeInOut" as const } },
+  closed: { width: 72, transition: { duration: 0.3, ease: "easeInOut" as const } },
 };
 
 const mobileOverlayVariants = {
