@@ -24,10 +24,11 @@ jobs:
         run: |
           npm install
           npm run build
+          npx opennextjs-cloudflare build
       
       - name: Deploy to Cloudflare
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          command: pages deploy .next --project-name=ferma-kz --branch=master
+          command: pages deploy .open-next --project-name=ferma-kz --branch=master
