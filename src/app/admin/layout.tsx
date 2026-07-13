@@ -48,7 +48,7 @@ const mobileOverlayVariants = {
 
 const mobileSidebarVariants = {
   hidden: { x: -300 },
-  visible: { x: 0, transition: { type: "spring", stiffness: 300, damping: 30 } },
+  visible: { x: 0, transition: { type: "spring" as const, stiffness: 300, damping: 30 } },
 };
 
 function SidebarContent({
