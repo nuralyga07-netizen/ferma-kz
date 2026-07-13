@@ -3,16 +3,63 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import { User, Mail, Lock, Phone, ArrowRight, Leaf, Store, ShoppingBag } from "lucide-react";
 
 export default function RegisterPage() {
+  const router = useRouter();
   const [role, setRole] = useState<"customer" | "farmer">("customer");
   const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    full_name: "",
+    email: "",
+    phone: "",
+    password: "",
+  });
+  const [error, setError] = useState("");
+
+  const updateField = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => setLoading(false), 1000);
+    setError("");
+
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+          full_name: formData.full_name,
+          role,
+          phone: formData.phone || undefined,
+        }),
+      });
+
+      const result = await res.json();
+
+      if (!result.success) {
+        setError(result.error || "Ошибка регистрации");
+        return;
+      }
+
+      toast.success("Аккаунт создан!");
+
+      if (role === "farmer") {
+        router.push("/farmer/apply");
+      } else {
+        router.push("/dashboard");
+      }
+    } catch {
+      setError("Ошибка соединения");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -35,6 +82,13 @@ export default function RegisterPage() {
             <h1 className="text-2xl font-bold">Создать аккаунт</h1>
             <p className="text-sm text-muted-foreground mt-1">Присоединяйтесь к сообществу</p>
           </div>
+
+          {/* Error */}
+          {error && (
+            <div className="mb-4 p-3 rounded-2xl bg-red-500/10 border border-red-500/20 text-sm text-red-500 text-center">
+              {error}
+            </div>
+          )}
 
           {/* Role Switch */}
           <div className="flex p-1 rounded-2xl bg-muted mb-6">
@@ -59,22 +113,16 @@ export default function RegisterPage() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="text-sm font-medium mb-1.5 block">Имя</label>
+            <div>
+              <label className="text-sm font-medium mb-1.5 block">Имя и фамилия</label>
+              <div className="relative">
+                <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                   type="text"
-                  placeholder="Имя"
-                  className="w-full px-4 py-3 rounded-2xl border border-border bg-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-sm transition-all"
-                  required
-                />
-              </div>
-              <div>
-                <label className="text-sm font-medium mb-1.5 block">Фамилия</label>
-                <input
-                  type="text"
-                  placeholder="Фамилия"
-                  className="w-full px-4 py-3 rounded-2xl border border-border bg-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-sm transition-all"
+                  value={formData.full_name}
+                  onChange={(e) => updateField("full_name", e.target.value)}
+                  placeholder="Иван Иванов"
+                  className="w-full pl-11 pr-4 py-3 rounded-2xl border border-border bg-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-sm transition-all"
                   required
                 />
               </div>
@@ -86,6 +134,8 @@ export default function RegisterPage() {
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                   type="email"
+                  value={formData.email}
+                  onChange={(e) => updateField("email", e.target.value)}
                   placeholder="your@email.com"
                   className="w-full pl-11 pr-4 py-3 rounded-2xl border border-border bg-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-sm transition-all"
                   required
@@ -99,9 +149,10 @@ export default function RegisterPage() {
                 <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                   type="tel"
+                  value={formData.phone}
+                  onChange={(e) => updateField("phone", e.target.value)}
                   placeholder="+7 700 000 00 00"
                   className="w-full pl-11 pr-4 py-3 rounded-2xl border border-border bg-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-sm transition-all"
-                  required
                 />
               </div>
             </div>
@@ -112,9 +163,12 @@ export default function RegisterPage() {
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                   type="password"
-                  placeholder="Минимум 8 символов"
+                  value={formData.password}
+                  onChange={(e) => updateField("password", e.target.value)}
+                  placeholder="Минимум 6 символов"
                   className="w-full pl-11 pr-4 py-3 rounded-2xl border border-border bg-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-sm transition-all"
                   required
+                  minLength={6}
                 />
               </div>
             </div>
@@ -126,8 +180,8 @@ export default function RegisterPage() {
                 className="p-4 rounded-2xl bg-emerald-500/5 border border-emerald-500/20"
               >
                 <p className="text-xs text-emerald-600 dark:text-emerald-400">
-                  🎉 После регистрации мы поможем создать витрину ваших продуктов. 
-                  Первый месяц — бесплатно!
+                  🎉 После регистрации вы сможете подать заявку на размещение ваших продуктов.
+                  Администратор проверит и одобрит её в ближайшее время!
                 </p>
               </motion.div>
             )}
