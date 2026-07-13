@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ferma.kz 🌿
 
-## Getting Started
+**Свежие фермерские продукты напрямую, без посредников.**
 
-First, run the development server:
+Маркетплейс для прямых продаж от фермеров к покупателям в Казахстане. Next.js 15, Supabase, Tailwind CSS.
+
+## 🚀 Быстрый старт
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Открой [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🏗 Архитектура
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── (public)/           # Публичные страницы
+│   ├── (auth)/             # Аутентификация
+│   ├── (dashboard)/        # Дашборды
+│   └── api/                # API роуты
+├── components/
+│   ├── ui/                 # UI-кит (Button, Card, Input...)
+│   ├── layout/             # Header, Footer, ThemeProvider
+│   └── features/           # Чат, Корзина, и т.д.
+├── lib/
+│   ├── supabase/           # Supabase клиент (browser, server, middleware)
+│   └── utils/              # Утилиты
+├── store/                  # Zustand (auth, cart)
+└── types/                  # TypeScript типы
+```
 
-## Learn More
+## 🛠 Стек
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework:** Next.js 16 (App Router)
+- **Язык:** TypeScript
+- **Стили:** Tailwind CSS v4
+- **Анимации:** Framer Motion
+- **Состояние:** Zustand
+- **База данных:** Supabase (PostgreSQL)
+- **Аутентификация:** Supabase Auth (Email + Google)
+- **Деплой:** Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📄 Страницы
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `/` — Главная с Hero, преимуществами, FAQ
+- `/catalog` — Каталог продуктов с поиском и фильтрами
+- `/product/[id]` — Детальная страница товара
+- `/cart` — Корзина
+- `/checkout` — Оформление заказа
+- `/login` — Вход
+- `/register` — Регистрация (покупатель/фермер)
+- `/dashboard` — Дашборд покупателя
+- `/farmer` — Дашборд фермера
+- `/chat` — Чат с фермером
+- `/about` — О проекте
+- `/farmers` — Все фермеры
+- `/terms` — Условия использования
 
-## Deploy on Vercel
+## ⚙️ Переменные окружения
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Скопируйте `.env.local.example` в `.env.local` и заполните:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+cp .env.local.example .env.local
+```
+
+| Переменная | Описание |
+|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | URL проекта Supabase |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Публичный ключ Supabase |
+| `DEEPSEEK_API_KEY` | AI для рекомендаций (опционально) |
+
+## 📦 Деплой на Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/nuralyga07-netizen/ferma-kz)
+
+Или вручную:
+1. Открой [vercel.com/new](https://vercel.com/new)
+2. Импортируй `nuralyga07-netizen/ferma-kz`
+3. Нажми **Deploy** 🚀
+
+## 🗄 База данных Supabase
+
+SQL схема в `supabase-schema.sql`. Включите в Supabase SQL Editor.
+
+## 👨‍🌾 Автор
+
+**Nuraly** — 15 лет, Актобе, Казахстан
+- Telegram: [@nuraly_channel](https://t.me/your_channel)
+
+---
+
+<p align="center">Сделано с ❤️ для фермеров Казахстана</p>
