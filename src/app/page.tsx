@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Leaf, Shield, Truck, Star, TrendingUp, Users, BadgeCheck, ShoppingBag, Wheat, Droplets, Egg, Apple } from "lucide-react";
+import { ArrowRight, Leaf, Shield, Package, Star, TrendingUp, Users, BadgeCheck, ShoppingBag, Wheat, Droplets, Egg, Apple } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -40,7 +40,7 @@ const steps = [
     color: "from-amber-500 to-amber-600",
   },
   {
-    icon: Truck,
+    icon: Package,
     title: "Получите заказ",
     desc: "Заберите продукты лично или закажите доставку до двери",
     color: "from-emerald-600 to-emerald-700",
@@ -178,7 +178,7 @@ export default function HomePage() {
                 color: "amber",
               },
               {
-                icon: Truck,
+                icon: Package,
                 title: "Доставка до двери",
                 desc: "Многие фермеры привозят заказы сами. Или вы можете забрать лично в удобное время.",
                 color: "emerald",

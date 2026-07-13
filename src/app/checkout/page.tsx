@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { MapPin, Phone, User, FileText, ChevronLeft, CreditCard, Truck, Shield } from "lucide-react";
+import { MapPin, Phone, User, FileText, ChevronLeft, CreditCard, Package, Shield } from "lucide-react";
 
 export default function CheckoutPage() {
   const [step, setStep] = useState(1);
@@ -92,7 +92,7 @@ export default function CheckoutPage() {
                 {/* Delivery */}
                 <div className="glass-card rounded-2xl p-6 space-y-4">
                   <h2 className="font-semibold flex items-center gap-2">
-                    <Truck className="w-4 h-4 text-emerald-500" />
+                    <Package className="w-4 h-4 text-emerald-500" />
                     Доставка
                   </h2>
                   <div className="space-y-3">

@@ -86,7 +86,7 @@ const STEPS = [
     color: "from-amber-500 to-amber-600",
   },
   {
-    icon: Truck,
+    icon: Package,
     title: "Получите заказ",
     desc: "Заберите продукты лично на ферме или закажите доставку до двери в удобное время",
     color: "from-emerald-600 to-emerald-700",

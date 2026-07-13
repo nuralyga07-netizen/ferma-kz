@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import {
   Star, MapPin, Clock, ChevronLeft, Heart, MessageCircle,
-  Share2, Shield, CheckCircle, Plus, Minus, Truck, Leaf,
+  Share2, Shield, CheckCircle, Plus, Minus, Package, Leaf,
 } from "lucide-react";
 
 const PRODUCT = {
@@ -171,7 +171,7 @@ export default function ProductPage() {
             <div className="grid grid-cols-2 gap-3">
               <div className="glass-card rounded-2xl p-4">
                 <div className="flex items-center gap-2 mb-1">
-                  <Truck className="w-4 h-4 text-emerald-500" />
+                  <Package className="w-4 h-4 text-emerald-500" />
                   <span className="text-sm font-medium">Доставка</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">{PRODUCT.delivery}</p>
