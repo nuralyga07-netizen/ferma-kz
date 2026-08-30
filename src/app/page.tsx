@@ -84,9 +84,9 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.3),transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(245,158,11,0.15),transparent_50%)]" />
         
-        {/* Floating orbs */}
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-emerald-500/10 blur-3xl animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-amber-500/5 blur-3xl animate-float" />
+        {/* Floating orbs — hidden on mobile so they don't overlap text */}
+        <div className="hidden sm:block absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-emerald-500/10 blur-3xl animate-pulse-glow pointer-events-none" />
+        <div className="hidden sm:block absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-amber-500/5 blur-3xl animate-float pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
           <motion.div
@@ -169,19 +169,22 @@ export default function HomePage() {
                 icon: Leaf,
                 title: "100% натуральное",
                 desc: "Все продукты домашние, без химии и консервантов. Вы знаете кто вырастил вашу еду.",
-                color: "emerald",
+                iconBg: "bg-emerald-500/10",
+                iconColor: "text-emerald-500",
               },
               {
                 icon: Shield,
                 title: "Честные цены",
                 desc: "Покупаете напрямую у фермера — без наценок магазинов и перекупщиков. До 30% дешевле.",
-                color: "amber",
+                iconBg: "bg-amber-500/10",
+                iconColor: "text-amber-500",
               },
               {
                 icon: Package,
                 title: "Доставка до двери",
                 desc: "Многие фермеры привозят заказы сами. Или вы можете забрать лично в удобное время.",
-                color: "emerald",
+                iconBg: "bg-emerald-500/10",
+                iconColor: "text-emerald-500",
               },
             ].map((feature) => (
               <motion.div
@@ -189,8 +192,8 @@ export default function HomePage() {
                 whileHover={{ y: -4 }}
                 className="glass-card rounded-2xl p-8 group cursor-default"
               >
-                <div className={`w-12 h-12 rounded-xl bg-${feature.color}-500/10 flex items-center justify-center mb-4`}>
-                  <feature.icon className={`w-6 h-6 text-${feature.color}-500`} />
+                <div className={`w-12 h-12 rounded-xl ${feature.iconBg} flex items-center justify-center mb-4`}>
+                  <feature.icon className={`w-6 h-6 ${feature.iconColor}`} />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{feature.desc}</p>
