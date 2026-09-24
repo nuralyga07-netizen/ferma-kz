@@ -1,0 +1,57 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-ferma}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ferma}
+      POSTGRES_DB: ${POSTGRES_DB:-ferma}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ferma}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT: 8080
+      DATABASE_URL: postgres://${POSTGRES_USER:-ferma}:${POSTGRES_PASSWORD:-ferma}@db:5432/${POSTGRES_DB:-ferma}?sslmode=disable
+      JWT_SECRET: ${JWT_SECRET:-change-me-to-a-random-32-bytes-string}
+      JWT_ACCESS_TTL: ${JWT_ACCESS_TTL:-15m}
+      JWT_REFRESH_TTL: ${JWT_REFRESH_TTL:-720h}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
+      UPLOAD_DIR: /data/uploads
+      DELIVERY_FEE: ${DELIVERY_FEE:-500}
+      DELIVERY_FREE_FROM: ${DELIVERY_FREE_FROM:-10000}
+      REFERRAL_REWARD: ${REFERRAL_REWARD:-500}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@ferma.kz}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin123}
+    volumes:
+      - uploads:/data/uploads
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+
+volumes:
+  pgdata:
+  uploads:

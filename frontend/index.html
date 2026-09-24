@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/leaf.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#232323" media="(prefers-color-scheme: dark)" />
+    <meta
+      name="description"
+      content="Ferma.kz — свежие фермерские продукты от местных хозяйств Актюбинской области. Мясо, молоко, овощи, мёд и домашняя выпечка."
+    />
+    <meta property="og:title" content="Ferma.kz — фермерские продукты Актюбинска" />
+    <meta
+      property="og:description"
+      content="Свежие фермерские продукты напрямую от проверенных хозяйств. Без посредников."
+    />
+    <meta property="og:type" content="website" />
+    <title>Ferma.kz — фермерские продукты Актюбинска</title>
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem("ferma-theme");
+          var theme = null;
+          if (raw) {
+            theme = JSON.parse(raw).state && JSON.parse(raw).state.theme;
+          }
+          var dark =
+            theme === "dark" ||
+            (theme === null && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

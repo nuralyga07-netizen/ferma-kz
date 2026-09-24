@@ -1,6 +1,26 @@
+# Node
 node_modules/
-.next/
-.env.local
+frontend/dist/
+npm-debug.log*
+
+# Go
+backend/*.exe
+backend/api
+backend/storage/
+backend/*.test
+
+# Env
 .env
-*.tsbuildinfo
-next-env.d.ts
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+
+# Docker volumes
+pgdata/
