@@ -12,10 +12,10 @@ export function SiteIntro() {
     if (!visible) return;
 
     document.documentElement.classList.add("ferma-intro-active");
-    const leaveTimer = window.setTimeout(() => setLeaving(true), 2800);
+    const leaveTimer = window.setTimeout(() => setLeaving(true), 3800);
     const removeTimer = window.setTimeout(() => {
       setVisible(false);
-    }, 3450);
+    }, 4450);
 
     return () => {
       window.clearTimeout(leaveTimer);
