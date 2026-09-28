@@ -314,6 +314,9 @@ html.ferma-intro-active body {
   position: absolute;
   right: clamp(1rem, 3vw, 2rem);
   bottom: clamp(1rem, 3vw, 2rem);
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
   border: 1px solid rgb(23 79 49 / 20%);
   border-radius: 999px;
   padding: .65rem 1rem;
@@ -330,6 +333,77 @@ html.ferma-intro-active body {
 .ferma-intro__skip:hover {
   background: rgb(255 255 255 / 78%);
   transform: translateY(-2px);
+}
+
+.ferma-intro__key {
+  border: 1px solid rgb(23 79 49 / 24%);
+  border-bottom-width: 2px;
+  border-radius: .4rem;
+  padding: .1rem .4rem;
+  background: rgb(255 255 255 / 70%);
+  font-family: inherit;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+/* ===== Тёмная тема заставки =====
+   Класс .dark ставится блокирующим скриптом в <head> ещё до первой отрисовки,
+   поэтому заставка сразу рисуется в нужной теме, без вспышки светлого фона.
+   Переопределяем только цвета, фон и границы: opacity и transform у этих
+   элементов заданы кейфреймами с fill-mode forwards и объявлениям не поддаются. */
+.dark .ferma-intro {
+  background:
+    radial-gradient(circle at 78% 22%, rgb(238 161 40 / 16%), transparent 30%),
+    linear-gradient(145deg, #0b140f 0%, #102019 50%, #1a1710 100%);
+  color: #e6f1e9;
+}
+
+/* На светлом фоне зерно затемняет (multiply), на тёмном должно подсвечивать. */
+.dark .ferma-intro__grain {
+  opacity: .1;
+  mix-blend-mode: screen;
+}
+
+/* В тёмной теме солнце — мягкое свечение, а не плотный диск: надпись над ним
+   лежит прямо поверх, и на сплошной заливке она теряла контраст. */
+.dark .ferma-intro__sun {
+  background: radial-gradient(circle,
+    rgb(224 145 38 / 78%) 0%,
+    rgb(184 110 24 / 46%) 58%,
+    rgb(150 85 18 / 0%) 100%);
+  filter: blur(8px);
+}
+
+.dark .ferma-intro__eyebrow {
+  color: #e0efe5;
+}
+
+.dark .ferma-intro__ferma {
+  color: #5ec98a;
+}
+
+.dark .ferma-intro__kz {
+  color: #f2803a;
+}
+
+.dark .ferma-intro__field {
+  stroke: #4a9b6a;
+}
+
+.dark .ferma-intro__skip {
+  border-color: rgb(255 255 255 / 18%);
+  background: rgb(255 255 255 / 10%);
+  color: #cfe6d6;
+}
+
+.dark .ferma-intro__skip:hover {
+  background: rgb(255 255 255 / 18%);
+}
+
+.dark .ferma-intro__key {
+  border-color: rgb(255 255 255 / 22%);
+  background: rgb(255 255 255 / 14%);
 }
 
 @keyframes ferma-intro-in {
@@ -373,6 +447,21 @@ html.ferma-intro-active body {
 
   .ferma-intro__field {
     margin-top: 2rem;
+  }
+
+  /* Кнопка — единственный способ пропустить на телефоне: даём нормальную
+     область нажатия (>=44px) и ставим её по центру, под большой палец.
+     Центруем через margin, а не transform: у .ferma-intro__skip анимация
+     ferma-detail-in с fill-mode forwards, и её transform перебил бы наш.
+     Поднимаем над нижней навигацией (fixed bottom-0), чтобы не пересекались. */
+  .ferma-intro__skip {
+    right: 0;
+    left: 0;
+    width: fit-content;
+    margin-inline: auto;
+    bottom: calc(4.5rem + env(safe-area-inset-bottom));
+    padding: .85rem 1.6rem;
+    font-size: .85rem;
   }
 }
 
