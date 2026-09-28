@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 
-const INTRO_KEY = "ferma-kz:intro-seen";
-
 export function SiteIntro() {
   const [visible, setVisible] = useState(() => {
     if (typeof window === "undefined") return false;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
-    return window.sessionStorage.getItem(INTRO_KEY) !== "1";
+    return true;
   });
   const [leaving, setLeaving] = useState(false);
 
@@ -14,11 +12,10 @@ export function SiteIntro() {
     if (!visible) return;
 
     document.documentElement.classList.add("ferma-intro-active");
-    const leaveTimer = window.setTimeout(() => setLeaving(true), 2300);
+    const leaveTimer = window.setTimeout(() => setLeaving(true), 2800);
     const removeTimer = window.setTimeout(() => {
-      window.sessionStorage.setItem(INTRO_KEY, "1");
       setVisible(false);
-    }, 2950);
+    }, 3450);
 
     return () => {
       window.clearTimeout(leaveTimer);
@@ -34,7 +31,6 @@ export function SiteIntro() {
   if (!visible) return null;
 
   const dismiss = () => {
-    window.sessionStorage.setItem(INTRO_KEY, "1");
     setLeaving(true);
     window.setTimeout(() => setVisible(false), 520);
   };
