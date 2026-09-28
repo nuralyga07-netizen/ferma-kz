@@ -203,3 +203,181 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ── Вступительная анимация Ferma KZ ─────────────── */
+html.ferma-intro-active,
+html.ferma-intro-active body {
+  overflow: hidden;
+}
+
+.ferma-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 22%, rgb(238 161 40 / 20%), transparent 28%),
+    linear-gradient(145deg, #f9fbf5 0%, #eef5e9 50%, #fff8eb 100%);
+  color: #173f2a;
+  animation: ferma-intro-in 420ms ease-out both;
+}
+
+.ferma-intro--leaving {
+  pointer-events: none;
+  animation: ferma-intro-out 650ms cubic-bezier(.76, 0, .24, 1) forwards;
+}
+
+.ferma-intro__grain {
+  position: absolute;
+  inset: 0;
+  opacity: .18;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.ferma-intro__sun {
+  position: absolute;
+  width: clamp(10rem, 22vw, 22rem);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: #efa128;
+  filter: blur(1px);
+  opacity: 0;
+  transform: scale(.15);
+  animation: ferma-sun-rise 1.25s .35s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+.ferma-intro__stage {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: min(92vw, 960px);
+}
+
+.ferma-intro__eyebrow {
+  margin-bottom: clamp(1rem, 2.5vw, 2rem);
+  font-size: clamp(.65rem, 1vw, .8rem);
+  font-weight: 700;
+  letter-spacing: .28em;
+  color: #39664b;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: ferma-detail-in 650ms 1.15s ease-out forwards;
+}
+
+.ferma-intro__wordmark {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  line-height: .74;
+  letter-spacing: -.095em;
+  font-size: clamp(6rem, 20vw, 16rem);
+  font-weight: 800;
+  user-select: none;
+  transform: scale(2.9);
+  opacity: 0;
+  animation: ferma-wordmark-in 1.55s .12s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+.ferma-intro__ferma {
+  color: #174f31;
+}
+
+.ferma-intro__kz {
+  margin-left: .08em;
+  color: #d96718;
+}
+
+.ferma-intro__field {
+  width: min(82vw, 720px);
+  margin-top: clamp(1.8rem, 5vw, 4rem);
+  stroke: #29623f;
+  stroke-width: 4;
+  stroke-linecap: round;
+  opacity: .9;
+}
+
+.ferma-intro__field path {
+  stroke-dasharray: 760;
+  stroke-dashoffset: 760;
+  animation: ferma-field-draw 1s 1s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+.ferma-intro__field path:nth-child(2) { animation-delay: 1.13s; }
+.ferma-intro__field path:nth-child(3) { animation-delay: 1.26s; }
+
+.ferma-intro__skip {
+  position: absolute;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  border: 1px solid rgb(23 79 49 / 20%);
+  border-radius: 999px;
+  padding: .65rem 1rem;
+  background: rgb(255 255 255 / 45%);
+  color: #28563a;
+  font-size: .78rem;
+  font-weight: 600;
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  animation: ferma-detail-in 500ms 1.45s ease-out forwards;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.ferma-intro__skip:hover {
+  background: rgb(255 255 255 / 78%);
+  transform: translateY(-2px);
+}
+
+@keyframes ferma-intro-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ferma-wordmark-in {
+  0% { opacity: 0; transform: scale(3.1) translateY(7vh); filter: blur(14px); }
+  44% { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+}
+
+@keyframes ferma-sun-rise {
+  0% { opacity: 0; transform: translateY(18vh) scale(.15); }
+  100% { opacity: .94; transform: translateY(-17vh) scale(1); }
+}
+
+@keyframes ferma-field-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes ferma-detail-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ferma-intro-out {
+  0% { opacity: 1; clip-path: inset(0 0 0 0); }
+  100% { opacity: 0; clip-path: inset(0 0 100% 0); }
+}
+
+@media (max-width: 640px) {
+  .ferma-intro__wordmark {
+    font-size: clamp(5rem, 25vw, 8rem);
+  }
+
+  .ferma-intro__eyebrow {
+    letter-spacing: .17em;
+    text-align: center;
+  }
+
+  .ferma-intro__field {
+    margin-top: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ferma-intro {
+    display: none;
+  }
+}

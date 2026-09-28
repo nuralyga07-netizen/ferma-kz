@@ -3,6 +3,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { SiteIntro } from "@/components/SiteIntro";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
@@ -66,6 +67,7 @@ export default function App() {
 
   return (
     <TooltipProvider delayDuration={150}>
+      {location.pathname === "/" && <SiteIntro />}
       <ScrollToTop />
       <div className="flex min-h-screen flex-col">
         <Header />
