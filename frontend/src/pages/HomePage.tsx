@@ -1,18 +1,33 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Carrot, Leaf, ShieldCheck, Store, Star, Truck } from "lucide-react";
+import { ArrowDown, ArrowRight, Store, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { FarmHeroSection } from "@/components/ui/farm-hero-section";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ProductCard } from "@/components/ProductCard";
 import { SectionHead } from "@/components/SectionHead";
+import { ShowcaseSection } from "@/components/ShowcaseSection";
 import { api } from "@/lib/api";
-import { cn } from "@/lib/utils";
-import type { Category, Farmer, Product } from "@/types";
+import type { Farmer, Product } from "@/types";
+
+/**
+ * Степь с ковылём на закате (Pexels #4189161, бесплатная лицензия).
+ * Пережато ffmpeg: 12 с, 24 fps, без звука, faststart — см. public/hero.
+ * Телефонам отдаём 720p, остальным 1080p; постер — первый кадр ролика.
+ */
+const HERO_POSTER = "/hero/hero-poster-1920.webp";
+const HERO_POSTER_SRCSET = "/hero/hero-poster-960.webp 960w, /hero/hero-poster-1920.webp 1920w";
+const HERO_VIDEO = [
+  { src: "/hero/hero-720.mp4", media: "(max-width: 767px)" },
+  { src: "/hero/hero-1080.mp4" },
+];
+
+/** Хиты продаж: сетка 4×2 на десктопе. */
+const HITS_COUNT = 8;
 
 export function HomePage() {
-  const [categories, setCategories] = useState<Category[]>([]);
   const [featured, setFeatured] = useState<Product[]>([]);
   const [farmers, setFarmers] = useState<Farmer[]>([]);
   const [loading, setLoading] = useState(true);
@@ -21,14 +36,16 @@ export function HomePage() {
     let alive = true;
     (async () => {
       try {
-        const [cats, feat, far] = await Promise.all([
-          api.listCategories(),
-          api.listProducts({ featured: true, limit: 8 }),
+        const [feat, rest, far] = await Promise.all([
+          api.listProducts({ featured: true, limit: HITS_COUNT }),
+          api.listProducts({ limit: HITS_COUNT * 2 }),
           api.listFarmers("", 6, 0),
         ]);
         if (!alive) return;
-        setCategories(cats);
-        setFeatured(feat.items);
+        // Сетка 4×2 должна быть полной: если хитов меньше, добираем обычными товарами.
+        const seen = new Set(feat.items.map((p) => p.id));
+        const fill = rest.items.filter((p) => !seen.has(p.id));
+        setFeatured([...feat.items, ...fill].slice(0, HITS_COUNT));
         setFarmers(far);
       } finally {
         if (alive) setLoading(false);
@@ -42,109 +59,83 @@ export function HomePage() {
   return (
     <div>
       {/* ── Hero ─────────────────────────────────── */}
-      <section className="relative overflow-hidden border-b border-border">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,oklch(0.596_0.145_163.225/0.07),transparent)] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,oklch(0.596_0.145_163.225/0.1),transparent)]"
-        />
-        <Container className="relative flex flex-col items-center py-20 text-center sm:py-28">
+      <FarmHeroSection
+        imageSrc={HERO_POSTER}
+        srcSet={HERO_POSTER_SRCSET}
+        sizes="100vw"
+        videoSources={HERO_VIDEO}
+        imagePosition="center"
+        overlay="left"
+        overlayStrength={0.72}
+      >
+        {/* Ровно высота окна; хедер лежит поверх, поэтому отступ сверху под него. */}
+        <Container className="flex h-[100svh] min-h-[520px] items-center pt-16 md:pt-20">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="max-w-3xl"
+            className="max-w-2xl"
           >
-            <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-xs">
-              <Leaf className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-500" />
-              Свежесть прямо с полей Актобе
-            </span>
-
-            <h1 className="text-4xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              Фермерские продукты{" "}
-              <span className="text-emerald-600 dark:text-emerald-500">без посредников</span>
+            <h1 className="text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Фермерские продукты
+              <br />
+              без посредников
             </h1>
 
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/90 sm:text-lg">
               Мясо, молоко, овощи, мёд и домашняя выпечка — напрямую от проверенных
               хозяйств. Закажите сегодня — завтра на вашем столе.
             </p>
 
-            <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+            <div className="mt-9 flex flex-wrap items-center gap-3">
               <Link to="/catalog">
-                <Button size="lg" rightIcon={<ArrowRight className="h-4 w-4" />}>
+                <Button
+                  size="lg"
+                  className="bg-white text-neutral-900 hover:bg-white/90"
+                  rightIcon={<ArrowRight className="h-4 w-4" />}
+                >
                   В каталог
                 </Button>
               </Link>
               <Link to="/farmers">
-                <Button size="lg" variant="outline">
+                <Button size="lg" variant="glass">
                   Наши фермеры
                 </Button>
               </Link>
             </div>
-
-            <div className="mx-auto mt-14 grid max-w-md grid-cols-3 gap-px overflow-hidden rounded-xl border border-border bg-border">
-              <HeroStat value="6+" label="ферм-партнёров" />
-              <HeroStat value="10" label="категорий" />
-              <HeroStat value="4.9" label="средний рейтинг" star />
-            </div>
           </motion.div>
         </Container>
-      </section>
 
-      {/* ── Преимущества ─────────────────────────── */}
-      <Container className="py-14 sm:py-16">
-        <div className="grid gap-4 sm:grid-cols-3 sm:gap-5">
-          <Feature
-            icon={<Truck className="h-5 w-5" />}
-            title="Доставка по Актобе"
-            text="500 ₸, бесплатно от 10 000 ₸. Самовывоз — бесплатно."
-          />
-          <Feature
-            icon={<ShieldCheck className="h-5 w-5" />}
-            title="Проверенные фермеры"
-            text="Каждое хозяйство проходит модерацию и получает рейтинг."
-          />
-          <Feature
-            icon={<Carrot className="h-5 w-5" />}
-            title="Свежесть гарантирована"
-            text="Собираем утром — привозим вечером. Без холодильников на складах."
-          />
-        </div>
-      </Container>
+        <a
+          href="#showcase"
+          className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60 transition-colors hover:text-white sm:flex"
+        >
+          Листайте
+          <ArrowDown className="h-3.5 w-3.5 animate-bounce" />
+        </a>
+      </FarmHeroSection>
 
-      {/* ── Категории ────────────────────────────── */}
-      <Container className="pb-14">
-        <SectionHead title="Категории" subtitle="Всё, что нужно для дома и праздника" linkTo="/catalog" />
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {loading
-            ? Array.from({ length: 10 }).map((_, i) => <Skeleton key={i} className="h-16 rounded-xl" />)
-            : categories.map((c, i) => (
-                <motion.div
-                  key={c.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.03, duration: 0.3 }}
-                >
-                  <Link
-                    to={`/catalog?category=${c.slug}`}
-                    className="flex h-full items-center gap-3 rounded-xl border border-border bg-card p-3.5 shadow-xs transition-all hover:-translate-y-0.5 hover:border-muted-foreground/25 hover:shadow-md"
-                  >
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-muted text-xl">
-                      {c.icon ?? "🌿"}
-                    </span>
-                    <span className="truncate text-sm font-medium text-foreground">{c.name}</span>
-                  </Link>
-                </motion.div>
-              ))}
-        </div>
-      </Container>
+      {/* ── Второй экран: бенто-витрина ─────── */}
+      <ShowcaseSection />
 
       {/* ── Хиты ─────────────────────────────────── */}
-      <Container className="pb-14">
-        <SectionHead title="Хиты продаж" subtitle="Что покупают чаще всего" linkTo="/catalog" />
+      <Container className="py-16 sm:py-24">
+        <div className="mb-10 flex items-end justify-between gap-6 sm:mb-14">
+          <h2 className="max-w-2xl text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            Хиты продаж
+          </h2>
+          <Link
+            to="/catalog"
+            className="group hidden shrink-0 items-center gap-1.5 pb-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
+          >
+            Весь каталог
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        </div>
+
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {loading
-            ? Array.from({ length: 4 }).map((_, i) => (
+            ? Array.from({ length: HITS_COUNT }).map((_, i) => (
                 <div key={i} className="space-y-3 rounded-xl border border-border bg-card p-4">
                   <Skeleton className="aspect-[4/3] w-full rounded-lg" />
                   <Skeleton className="h-4 w-3/4" />
@@ -154,7 +145,7 @@ export function HomePage() {
             : featured.map((p) => <ProductCard key={p.id} product={p} />)}
         </div>
         {!loading && featured.length === 0 && (
-          <p className="rounded-xl border border-dashed border-border py-12 text-center text-sm text-muted-foreground">
+          <p className="mt-4 rounded-xl border border-dashed border-border py-12 text-center text-sm text-muted-foreground">
             Товары скоро появятся — следите за новинками!
           </p>
         )}
@@ -172,7 +163,7 @@ export function HomePage() {
                   to={`/farmers/${f.id}`}
                   className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 shadow-xs transition-all hover:-translate-y-0.5 hover:border-muted-foreground/25 hover:shadow-md"
                 >
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-lg font-semibold text-white">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-600 text-lg font-semibold text-white">
                     {(f.farm_name ?? f.full_name).slice(0, 1)}
                   </span>
                   <div className="min-w-0 flex-1">
@@ -198,19 +189,19 @@ export function HomePage() {
 
       {/* ── CTA фермерам (тёмная панель) ─────────── */}
       <Container className="pb-20">
-        <div className="relative overflow-hidden rounded-2xl bg-zinc-950 px-6 py-14 text-center sm:px-12 dark:border dark:border-white/10">
+        <div className="relative overflow-hidden rounded-2xl bg-bark px-6 py-14 text-center sm:px-12 border border-white/10">
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_50%_0%,oklch(0.596_0.145_163.225/0.18),transparent)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_50%_0%,rgb(224_112_58/0.2),transparent)]"
           />
           <div className="relative mx-auto max-w-xl">
             <span className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5">
-              <Store className="h-6 w-6 text-emerald-400" />
+              <Store className="h-6 w-6 text-brand-400" />
             </span>
             <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
               У вас своё хозяйство?
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-zinc-400 sm:text-base">
+            <p className="mt-3 text-sm leading-relaxed text-cream/65 sm:text-base">
               Присоединяйтесь к Ferma.kz и продавайте продукцию напрямую покупателям.
               Без комиссий за размещение и рекламы.
             </p>
@@ -222,30 +213,6 @@ export function HomePage() {
           </div>
         </div>
       </Container>
-    </div>
-  );
-}
-
-function HeroStat({ value, label, star }: { value: string; label: string; star?: boolean }) {
-  return (
-    <div className="bg-background px-4 py-5">
-      <p className="flex items-center justify-center gap-1 text-2xl font-semibold tracking-tight text-foreground">
-        {value}
-        {star && <Star className="h-4.5 w-4.5 fill-amber-400 text-amber-400" />}
-      </p>
-      <p className="mt-1 text-xs text-muted-foreground">{label}</p>
-    </div>
-  );
-}
-
-function Feature({ icon, title, text }: { icon: React.ReactNode; title: string; text: string }) {
-  return (
-    <div className={cn("rounded-xl border border-border bg-card p-5 shadow-xs")}>
-      <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
-        {icon}
-      </span>
-      <h3 className="text-sm font-semibold text-foreground">{title}</h3>
-      <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{text}</p>
     </div>
   );
 }

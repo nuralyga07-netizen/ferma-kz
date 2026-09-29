@@ -91,7 +91,7 @@ export function ProductCard({
 
         <Link
           to={`/product/${product.id}`}
-          className="mt-1.5 line-clamp-2 min-h-10 text-sm font-semibold leading-snug text-foreground transition-colors group-hover:text-emerald-700 dark:group-hover:text-emerald-500"
+          className="mt-1.5 line-clamp-2 min-h-10 text-sm font-semibold leading-snug text-foreground transition-colors group-hover:text-brand-700 dark:group-hover:text-brand-500"
         >
           {product.name}
         </Link>

@@ -138,7 +138,7 @@ export function OrderActionsModal({
                 {role === "farmer" ? order.customer_name : order.farmer_name}
               </p>
               {role === "farmer" && order.customer_phone && (
-                <a href={`tel:${order.customer_phone}`} className="mt-1 inline-flex items-center gap-1 text-sm text-emerald-600 hover:underline dark:text-emerald-400">
+                <a href={`tel:${order.customer_phone}`} className="mt-1 inline-flex items-center gap-1 text-sm text-brand-600 hover:underline dark:text-brand-400">
                   <Phone className="h-3.5 w-3.5" /> {order.customer_phone}
                 </a>
               )}
@@ -181,7 +181,7 @@ export function OrderActionsModal({
             {order.discount > 0 && (
               <div className="flex justify-between">
                 <dt className="text-muted-foreground">Скидка{order.promo_code ? ` (${order.promo_code})` : ""}</dt>
-                <dd className="font-medium text-emerald-600 dark:text-emerald-400">−{formatPrice(order.discount)}</dd>
+                <dd className="font-medium text-brand-600 dark:text-brand-400">−{formatPrice(order.discount)}</dd>
               </div>
             )}
             <div className="flex justify-between">

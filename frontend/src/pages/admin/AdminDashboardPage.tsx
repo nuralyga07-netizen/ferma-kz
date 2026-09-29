@@ -59,7 +59,7 @@ export function AdminDashboardPage() {
       label: "Фермеры",
       value: String(stats.farmers),
       icon: <Sprout className="h-5 w-5" />,
-      tint: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400",
+      tint: "bg-brand-500/10 text-brand-700 dark:text-brand-400",
     },
     {
       label: "Заказы",
@@ -109,7 +109,7 @@ export function AdminDashboardPage() {
       <div className="mt-6 rounded-2xl border border-border bg-card p-5 shadow-xs">
         <div className="mb-5 flex flex-wrap items-center justify-between gap-2">
           <h2 className="flex items-center gap-2 text-base font-semibold text-foreground">
-            <BarChart3 className="h-4 w-4 text-emerald-700 dark:text-emerald-500" />
+            <BarChart3 className="h-4 w-4 text-brand-700 dark:text-brand-500" />
             Заказы за неделю
           </h2>
           <Badge variant="primary">

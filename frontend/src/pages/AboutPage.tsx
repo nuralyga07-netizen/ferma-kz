@@ -37,7 +37,7 @@ export function AboutPage() {
       <section className="border-b border-border">
         <Container className="py-16 text-center sm:py-20">
           <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-background px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-xs">
-            <Leaf className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-500" /> О нас
+            <Leaf className="h-3.5 w-3.5 text-brand-600 dark:text-brand-500" /> О нас
           </span>
           <h1 className="mx-auto max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Фермерские продукты — без посредников
@@ -121,16 +121,16 @@ export function AboutPage() {
         </div>
 
         {/* CTA */}
-        <div className="relative mt-16 overflow-hidden rounded-2xl bg-zinc-950 px-6 py-12 text-center sm:px-12 dark:border dark:border-white/10">
+        <div className="relative mt-16 overflow-hidden rounded-2xl bg-bark px-6 py-12 text-center sm:px-12 border border-white/10">
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_50%_0%,oklch(0.596_0.145_163.225/0.18),transparent)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_50%_0%,rgb(224_112_58/0.2),transparent)]"
           />
           <div className="relative">
             <h2 className="text-2xl font-semibold tracking-tight text-white">
               Попробуйте — это просто
             </h2>
-            <p className="mx-auto mt-2 max-w-md text-sm text-zinc-400">
+            <p className="mx-auto mt-2 max-w-md text-sm text-cream/65">
               Загляните в каталог или познакомьтесь с нашими фермерами.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -153,7 +153,7 @@ export function AboutPage() {
 function Step({ icon, title, text }: { icon: React.ReactNode; title: string; text: string }) {
   return (
     <div className="rounded-xl border border-border bg-card p-5 shadow-xs">
-      <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
+      <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-brand-500/10 text-brand-700 dark:text-brand-400">
         {icon}
       </span>
       <h3 className="text-sm font-semibold text-foreground">{title}</h3>

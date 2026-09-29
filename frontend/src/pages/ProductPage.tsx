@@ -61,7 +61,7 @@ export function ProductPage() {
     return (
       <Container className="pt-32 text-center">
         <p className="text-lg font-semibold text-foreground">Товар не найден</p>
-        <Link to="/catalog" className="mt-3 inline-block text-sm font-medium text-emerald-700 hover:underline dark:text-emerald-500">
+        <Link to="/catalog" className="mt-3 inline-block text-sm font-medium text-brand-700 hover:underline dark:text-brand-500">
           ← В каталог
         </Link>
       </Container>
@@ -185,13 +185,13 @@ export function ProductPage() {
           <p
             className={cn(
               "mt-2 flex items-center gap-1.5 text-sm font-medium",
-              inStock ? "text-emerald-700 dark:text-emerald-400" : "text-destructive",
+              inStock ? "text-brand-700 dark:text-brand-400" : "text-destructive",
             )}
           >
             <span
               className={cn(
                 "h-1.5 w-1.5 rounded-full",
-                inStock ? "bg-emerald-500" : "bg-destructive",
+                inStock ? "bg-brand-500" : "bg-destructive",
               )}
             />
             {inStock ? `В наличии: ${product.quantity_available} ${product.unit}` : "Нет в наличии"}
@@ -230,11 +230,11 @@ export function ProductPage() {
           {/* Доставка */}
           <div className="mt-6 space-y-3 rounded-xl border border-border bg-muted/40 p-4 text-sm">
             <p className="flex items-center gap-2.5 text-foreground">
-              <Truck className="h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-500" />
+              <Truck className="h-4 w-4 shrink-0 text-brand-700 dark:text-brand-500" />
               Доставка 500 ₸ · бесплатно от 10 000 ₸
             </p>
             <p className="flex items-center gap-2.5 text-foreground">
-              <ShieldCheck className="h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-500" />
+              <ShieldCheck className="h-4 w-4 shrink-0 text-brand-700 dark:text-brand-500" />
               Самовывоз с фермы — бесплатно
             </p>
           </div>

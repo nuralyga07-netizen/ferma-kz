@@ -146,7 +146,7 @@ export function FarmerProductFormPage() {
         <p className="text-lg font-semibold text-foreground">{error}</p>
         <button
           onClick={() => navigate("/farmer/products")}
-          className="mt-3 text-sm font-medium text-emerald-700 hover:underline dark:text-emerald-500"
+          className="mt-3 text-sm font-medium text-brand-700 hover:underline dark:text-brand-500"
         >
           ← К товарам
         </button>
@@ -200,7 +200,7 @@ export function FarmerProductFormPage() {
               <button
                 type="button"
                 onClick={() => fileRef.current?.click()}
-                className="flex h-24 w-24 flex-col items-center justify-center gap-1.5 rounded-xl border border-dashed border-border text-muted-foreground transition-colors hover:border-emerald-400 hover:text-emerald-500"
+                className="flex h-24 w-24 flex-col items-center justify-center gap-1.5 rounded-xl border border-dashed border-border text-muted-foreground transition-colors hover:border-brand-400 hover:text-brand-500"
               >
                 {uploading ? <Spinner className="h-5 w-5" /> : <ImagePlus className="h-5 w-5" />}
                 <span className="text-[11px]">Добавить</span>
@@ -286,7 +286,7 @@ export function FarmerProductFormPage() {
                   className={cn(
                     "rounded-lg border px-3 py-2 text-sm font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
                     form.unit === u
-                      ? "border-emerald-600/40 bg-emerald-500/5 text-emerald-800 ring-1 ring-emerald-600/20 dark:text-emerald-300"
+                      ? "border-brand-600/40 bg-brand-500/5 text-brand-800 ring-1 ring-brand-600/20 dark:text-brand-300"
                       : "border-input bg-background text-muted-foreground hover:bg-accent hover:text-foreground",
                   )}
                 >
@@ -318,7 +318,7 @@ export function FarmerProductFormPage() {
             className={cn(
               "flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
               form.organic
-                ? "border-emerald-600/40 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300"
+                ? "border-brand-600/40 bg-brand-500/10 text-brand-800 dark:text-brand-300"
                 : "border-input bg-background text-muted-foreground hover:bg-accent hover:text-foreground",
             )}
           >

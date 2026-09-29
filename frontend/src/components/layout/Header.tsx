@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
@@ -50,35 +50,64 @@ export function Header() {
     user?.role === "admin" ? "/admin" : user?.role === "farmer" ? "/farmer" : "/account/orders";
   const showCart = !user || user.role === "customer";
 
+  // На главной хедер лежит поверх видео и прозрачен, пока страница не прокручена.
+  const isHome = pathname === "/";
+  const scrolled = useScrolled(24);
+  const clear = isHome && !scrolled && !mobileOpen;
+
+  const iconBtn = cn(
+    "flex h-9 w-9 items-center justify-center rounded-lg transition-colors",
+    clear
+      ? "text-white/80 hover:bg-white/10 hover:text-white"
+      : "text-muted-foreground hover:bg-accent hover:text-foreground",
+  );
+
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur-xl">
-      <Container className="flex h-16 items-center justify-between gap-4">
-        <Logo />
+    <header
+      className={cn(
+        "top-0 z-40 w-full border-b transition-[background-color,border-color,backdrop-filter] duration-300",
+        isHome ? "fixed inset-x-0" : "sticky",
+        clear
+          ? "border-transparent bg-transparent"
+          : "border-foreground/[0.06] bg-background/55 backdrop-blur-lg backdrop-saturate-150",
+      )}
+    >
+      <Container className="flex h-16 items-center justify-between gap-4 md:grid md:h-20 md:grid-cols-[1fr_auto_1fr]">
+        <Logo tone={clear ? "light" : "default"} className="justify-self-start" />
 
         {/* Десктоп-навигация */}
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Основная навигация">
-          {NAV.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              className={cn(
-                "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                item.match(pathname)
-                  ? "bg-muted text-foreground"
-                  : "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-7 md:flex" aria-label="Основная навигация">
+          {NAV.map((item) => {
+            const active = item.match(pathname);
+            return (
+              <Link
+                key={item.to}
+                to={item.to}
+                aria-current={active ? "page" : undefined}
+                className={cn(
+                  "relative py-2 text-sm font-medium transition-colors",
+                  "after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:transition-transform hover:after:scale-x-100",
+                  active && "after:scale-x-100",
+                  clear
+                    ? cn("after:bg-white", active ? "text-white" : "text-white/75 hover:text-white")
+                    : cn(
+                        "after:bg-foreground",
+                        active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+                      ),
+                )}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Действия */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 justify-self-end">
           <button
             onClick={toggleTheme}
             aria-label={theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            className={iconBtn}
           >
             {theme === "dark" ? <Sun className="h-[18px] w-[18px]" /> : <Moon className="h-[18px] w-[18px]" />}
           </button>
@@ -87,11 +116,11 @@ export function Header() {
             <button
               onClick={() => navigate("/cart")}
               aria-label={`Корзина, ${cartCount} товаров`}
-              className="relative flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              className={cn(iconBtn, "relative")}
             >
               <ShoppingBag className="h-[18px] w-[18px]" />
               {cartCount > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-emerald-600 px-1 text-[10px] font-bold leading-none text-white">
+                <span className="absolute -right-0.5 -top-0.5 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-brand-600 px-1 text-[10px] font-bold leading-none text-white">
                   {cartCount > 99 ? "99+" : cartCount}
                 </span>
               )}
@@ -102,7 +131,7 @@ export function Header() {
             <Link
               to="/chat"
               aria-label="Сообщения"
-              className="hidden h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground sm:flex"
+              className={cn(iconBtn, "hidden sm:flex")}
             >
               <MessageCircle className="h-[18px] w-[18px]" />
             </Link>
@@ -155,11 +184,22 @@ export function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <div className="hidden items-center gap-2 pl-1.5 sm:flex">
-              <Button variant="ghost" size="sm" onClick={() => navigate("/login")}>
+            <div className="hidden items-center gap-2 pl-2 sm:flex">
+              <Button
+                variant="ghost"
+                onClick={() => navigate("/login")}
+                className={cn(clear && "text-white hover:bg-white/10 hover:text-white")}
+              >
                 Войти
               </Button>
-              <Button size="sm" onClick={() => navigate("/register")}>
+              <Button
+                variant={clear ? "outline" : "primary"}
+                onClick={() => navigate("/register")}
+                className={cn(
+                  "h-10 px-5",
+                  clear && "border-white/45 bg-transparent text-white shadow-none hover:bg-white/10 hover:text-white",
+                )}
+              >
                 Регистрация
               </Button>
             </div>
@@ -170,7 +210,7 @@ export function Header() {
             onClick={() => setMobileOpen((v) => !v)}
             aria-label={mobileOpen ? "Закрыть меню" : "Открыть меню"}
             aria-expanded={mobileOpen}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-accent md:hidden"
+            className={cn(iconBtn, clear ? "text-white" : "text-foreground", "md:hidden")}
           >
             <MenuIcon open={mobileOpen} />
           </button>
@@ -269,4 +309,16 @@ function MenuIcon({ open }: { open: boolean }) {
       <path d="M2.5 4.5h13M2.5 9h13M2.5 13.5h13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
   );
+}
+
+/** true, когда страница прокручена дальше порога. */
+function useScrolled(threshold: number) {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > threshold);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [threshold]);
+  return scrolled;
 }

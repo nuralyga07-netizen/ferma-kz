@@ -74,7 +74,7 @@ export function CartPage() {
               <div className="min-w-0 flex-1 basis-40">
                 <Link
                   to={`/product/${it.product.id}`}
-                  className="line-clamp-1 text-sm font-semibold text-foreground transition-colors hover:text-emerald-700 dark:hover:text-emerald-500"
+                  className="line-clamp-1 text-sm font-semibold text-foreground transition-colors hover:text-brand-700 dark:hover:text-brand-500"
                 >
                   {it.product.name}
                 </Link>
@@ -144,7 +144,7 @@ export function CartPage() {
                 </dt>
                 <dd className="font-medium text-foreground">
                   {freeDelivery ? (
-                    <span className="text-emerald-700 dark:text-emerald-500">Бесплатно</span>
+                    <span className="text-brand-700 dark:text-brand-500">Бесплатно</span>
                   ) : (
                     formatPrice(deliveryFee)
                   )}
@@ -168,7 +168,7 @@ export function CartPage() {
               </div>
             )}
             {freeDelivery && (
-              <p className="mt-4 rounded-lg bg-emerald-500/10 px-3 py-2 text-xs font-medium text-emerald-700 dark:text-emerald-400">
+              <p className="mt-4 rounded-lg bg-brand-500/10 px-3 py-2 text-xs font-medium text-brand-700 dark:text-brand-400">
                 Доставка бесплатно 🎉
               </p>
             )}

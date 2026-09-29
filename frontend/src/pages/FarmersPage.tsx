@@ -85,7 +85,7 @@ export function FarmersPage() {
               <div className="flex items-center gap-4">
                 <Avatar src={f.avatar_url} name={f.farm_name ?? f.full_name} size="xl" />
                 <div className="min-w-0">
-                  <h2 className="truncate text-base font-semibold text-foreground transition-colors group-hover:text-emerald-700 dark:group-hover:text-emerald-500">
+                  <h2 className="truncate text-base font-semibold text-foreground transition-colors group-hover:text-brand-700 dark:group-hover:text-brand-500">
                     {f.farm_name ?? f.full_name}
                   </h2>
                   <p className="truncate text-sm text-muted-foreground">{f.full_name}</p>
@@ -112,16 +112,16 @@ export function FarmersPage() {
       )}
 
       {/* CTA */}
-      <div className="relative mt-14 overflow-hidden rounded-2xl bg-zinc-950 px-6 py-12 text-center sm:px-12 dark:border dark:border-white/10">
+      <div className="relative mt-14 overflow-hidden rounded-2xl bg-bark px-6 py-12 text-center sm:px-12 border border-white/10">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_50%_0%,oklch(0.596_0.145_163.225/0.18),transparent)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_50%_0%,rgb(224_112_58/0.2),transparent)]"
         />
         <div className="relative">
           <h2 className="text-2xl font-semibold tracking-tight text-white">
             Хотите продавать на Ferma.kz?
           </h2>
-          <p className="mx-auto mt-2 max-w-md text-sm text-zinc-400">
+          <p className="mx-auto mt-2 max-w-md text-sm text-cream/65">
             Зарегистрируйтесь как фермер и отправьте заявку — модерация занимает 1–2 дня.
           </p>
           <Link to="/register" className="mt-6 inline-block">

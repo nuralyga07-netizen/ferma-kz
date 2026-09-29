@@ -140,7 +140,7 @@ export function ProfilePage() {
           {(user.role === "customer" || user.role === "farmer") && !user.farm_name && (
             <div className="rounded-xl border border-border bg-card p-5 shadow-xs">
               <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                <Carrot className="h-4 w-4 text-emerald-700 dark:text-emerald-500" /> Статус фермера
+                <Carrot className="h-4 w-4 text-brand-700 dark:text-brand-500" /> Статус фермера
               </h3>
               {app === null ? (
                 <>
@@ -160,7 +160,7 @@ export function ProfilePage() {
                   Заявка на рассмотрении с {formatDate(app.created_at)}
                 </p>
               ) : app.status === "approved" ? (
-                <p className="mt-2 rounded-lg bg-emerald-500/10 px-3 py-2.5 text-sm text-emerald-800 dark:text-emerald-300">
+                <p className="mt-2 rounded-lg bg-brand-500/10 px-3 py-2.5 text-sm text-brand-800 dark:text-brand-300">
                   Заявка одобрена
                 </p>
               ) : (

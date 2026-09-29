@@ -71,13 +71,13 @@ export function MobileNav() {
               aria-current={active ? "page" : undefined}
               className={cn(
                 "flex flex-col items-center justify-center gap-1 py-2.5 text-[10px] font-medium transition-colors",
-                active ? "text-emerald-600 dark:text-emerald-500" : "text-muted-foreground hover:text-foreground",
+                active ? "text-brand-600 dark:text-brand-500" : "text-muted-foreground hover:text-foreground",
               )}
             >
               <span className="relative">
                 <Icon className="h-5 w-5" strokeWidth={active ? 2.2 : 1.8} />
                 {"badge" in item && (item.badge ?? 0) > 0 && (
-                  <span className="absolute -right-2 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-emerald-600 px-1 text-[9px] font-bold leading-none text-white">
+                  <span className="absolute -right-2 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-600 px-1 text-[9px] font-bold leading-none text-white">
                     {item.badge}
                   </span>
                 )}

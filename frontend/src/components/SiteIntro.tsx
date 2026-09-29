@@ -90,8 +90,8 @@ export function SiteIntro() {
       <div className="ferma-intro__stage" aria-hidden="true">
         <span className="ferma-intro__eyebrow">ПРЯМО ОТ ФЕРМЕРОВ КАЗАХСТАНА</span>
         <div className="ferma-intro__wordmark">
-          <span className="ferma-intro__ferma">ferma</span>
-          <span className="ferma-intro__kz">kz</span>
+          <img className="ferma-intro__logo ferma-intro__logo--dark" src="/brand/logo-192.webp" alt="" />
+          <img className="ferma-intro__logo ferma-intro__logo--light" src="/brand/logo-light-192.webp" alt="" />
         </div>
         <svg className="ferma-intro__field" viewBox="0 0 720 110" fill="none">
           <path d="M8 94C174 25 354 20 712 82" />

@@ -136,7 +136,7 @@ export function CatalogPage() {
             className={cn(
               "h-9 rounded-lg border px-3.5 text-sm font-medium shadow-xs transition-colors",
               organic
-                ? "border-emerald-600/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+                ? "border-brand-600/30 bg-brand-500/10 text-brand-700 dark:text-brand-400"
                 : "border-input bg-background text-foreground hover:bg-accent",
             )}
           >
@@ -150,7 +150,7 @@ export function CatalogPage() {
             className={cn(
               "flex h-9 items-center gap-1.5 rounded-lg border px-3.5 text-sm font-medium shadow-xs transition-colors",
               minPrice || maxPrice
-                ? "border-emerald-600/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+                ? "border-brand-600/30 bg-brand-500/10 text-brand-700 dark:text-brand-400"
                 : "border-input bg-background text-foreground hover:bg-accent",
             )}
           >

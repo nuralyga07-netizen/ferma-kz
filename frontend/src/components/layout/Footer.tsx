@@ -63,21 +63,21 @@ export function Footer() {
           <h4 className="mb-4 text-sm font-semibold text-foreground">Контакты</h4>
           <ul className="space-y-2.5 text-sm text-muted-foreground">
             <li className="flex items-center gap-2.5">
-              <MapPin className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-500" />
+              <MapPin className="h-4 w-4 shrink-0 text-brand-600 dark:text-brand-500" />
               г. Актобе, Казахстан
             </li>
             <li className="flex items-center gap-2.5">
-              <Phone className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-500" />
+              <Phone className="h-4 w-4 shrink-0 text-brand-600 dark:text-brand-500" />
               <a href="tel:+77000000000" className="transition-colors hover:text-foreground">
                 +7 (700) 000-00-00
               </a>
             </li>
             <li className="flex items-center gap-2.5">
-              <Send className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-500" />
+              <Send className="h-4 w-4 shrink-0 text-brand-600 dark:text-brand-500" />
               @ferma_kz
             </li>
             <li className="flex items-center gap-2.5">
-              <Instagram className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-500" />
+              <Instagram className="h-4 w-4 shrink-0 text-brand-600 dark:text-brand-500" />
               @ferma.kz
             </li>
           </ul>

@@ -84,7 +84,7 @@ export function LoginPage() {
           <label className="flex cursor-pointer items-center gap-2 text-sm text-muted-foreground select-none">
             <input
               type="checkbox"
-              className="h-4 w-4 rounded accent-emerald-500"
+              className="h-4 w-4 rounded accent-brand-500"
               readOnly
               checked
             />

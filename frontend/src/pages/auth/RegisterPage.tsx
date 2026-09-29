@@ -191,14 +191,14 @@ function RoleCard({
       className={cn(
         "rounded-xl border p-3 text-left transition-all outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
         active
-          ? "border-emerald-600/40 bg-emerald-500/5 ring-1 ring-emerald-600/20 dark:bg-emerald-500/10"
+          ? "border-brand-600/40 bg-brand-500/5 ring-1 ring-brand-600/20 dark:bg-brand-500/10"
           : "border-input hover:bg-accent",
       )}
     >
       <span
         className={cn(
           "mb-1.5 flex h-9 w-9 items-center justify-center rounded-lg transition-colors",
-          active ? "bg-emerald-600 text-white" : "bg-muted text-muted-foreground",
+          active ? "bg-brand-600 text-white" : "bg-muted text-muted-foreground",
         )}
       >
         {icon}

@@ -62,6 +62,6 @@ export const ORDER_STATUS_COLORS: Record<string, string> = {
   confirmed: "bg-blue-100 text-blue-800 dark:bg-blue-500/15 dark:text-blue-300",
   preparing: "bg-violet-100 text-violet-800 dark:bg-violet-500/15 dark:text-violet-300",
   delivering: "bg-cyan-100 text-cyan-800 dark:bg-cyan-500/15 dark:text-cyan-300",
-  delivered: "bg-emerald-100 text-emerald-800 dark:bg-emerald-500/15 dark:text-emerald-300",
+  delivered: "bg-brand-100 text-brand-800 dark:bg-brand-500/15 dark:text-brand-300",
   cancelled: "bg-rose-100 text-rose-800 dark:bg-rose-500/15 dark:text-rose-300",
 };

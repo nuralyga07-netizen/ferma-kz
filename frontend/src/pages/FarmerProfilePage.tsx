@@ -40,7 +40,7 @@ export function FarmerProfilePage() {
         <p className="text-lg font-semibold text-foreground">Фермер не найден</p>
         <Link
           to="/farmers"
-          className="mt-3 inline-block text-sm font-medium text-emerald-700 hover:underline dark:text-emerald-500"
+          className="mt-3 inline-block text-sm font-medium text-brand-700 hover:underline dark:text-brand-500"
         >
           ← К списку фермеров
         </Link>

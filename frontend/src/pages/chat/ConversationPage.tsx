@@ -164,7 +164,7 @@ export function ConversationPage() {
         <p className="text-lg font-semibold text-foreground">Диалог не найден</p>
         <Link
           to="/chat"
-          className="mt-3 inline-block text-sm font-medium text-emerald-700 hover:underline dark:text-emerald-500"
+          className="mt-3 inline-block text-sm font-medium text-brand-700 hover:underline dark:text-brand-500"
         >
           ← К сообщениям
         </Link>
@@ -200,7 +200,7 @@ export function ConversationPage() {
           {product && (
             <Link
               to={`/product/${product.id}`}
-              className="block truncate text-xs text-emerald-700 hover:underline dark:text-emerald-500"
+              className="block truncate text-xs text-brand-700 hover:underline dark:text-brand-500"
             >
               {product.name} · {formatPrice(product.price)}/{product.unit}
             </Link>

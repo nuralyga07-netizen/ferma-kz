@@ -38,13 +38,13 @@ export function ChatPage() {
         <span
           className={cn(
             "flex items-center gap-1.5 text-xs font-medium",
-            connected ? "text-emerald-700 dark:text-emerald-500" : "text-muted-foreground",
+            connected ? "text-brand-700 dark:text-brand-500" : "text-muted-foreground",
           )}
         >
           <span
             className={cn(
               "h-2 w-2 rounded-full",
-              connected ? "bg-emerald-500" : "bg-muted-foreground/40",
+              connected ? "bg-brand-500" : "bg-muted-foreground/40",
             )}
           />
           {connected ? "онлайн" : "офлайн"}
@@ -104,7 +104,7 @@ export function ChatPage() {
                       )}
                     >
                       {c.product_name && (
-                        <span className="text-emerald-700 dark:text-emerald-500">
+                        <span className="text-brand-700 dark:text-brand-500">
                           {c.product_name} ·{" "}
                         </span>
                       )}

@@ -97,7 +97,7 @@ export function FarmerProductsPage() {
                   <div className="flex items-start justify-between gap-2">
                     <Link
                       to={`/product/${p.id}`}
-                      className="truncate font-semibold text-foreground hover:text-emerald-600 dark:hover:text-emerald-400"
+                      className="truncate font-semibold text-foreground hover:text-brand-600 dark:hover:text-brand-400"
                     >
                       {p.name}
                     </Link>

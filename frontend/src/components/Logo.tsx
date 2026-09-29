@@ -1,16 +1,44 @@
 import { Link } from "react-router-dom";
-import { Leaf } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export function Logo({ className, to = "/" }: { className?: string; to?: string }) {
+/**
+ * Фирменный логотип (public/brand). tone="light" — кремовая версия для тёмного фона:
+ * прозрачный хедер поверх видео, тёмные секции. По умолчанию версия следует теме сайта.
+ */
+export function Logo({
+  className,
+  to = "/",
+  tone = "default",
+}: {
+  className?: string;
+  to?: string;
+  tone?: "default" | "light";
+}) {
+  const light = tone === "light";
   return (
-    <Link to={to} className={cn("group inline-flex items-center gap-2.5", className)}>
-      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-600 shadow-xs transition-transform group-hover:scale-105">
-        <Leaf className="h-4.5 w-4.5 text-white" strokeWidth={2.2} />
-      </span>
-      <span className="text-[17px] font-semibold tracking-tight text-foreground">
-        Ferma<span className="text-emerald-600 dark:text-emerald-500">.kz</span>
-      </span>
+    <Link
+      to={to}
+      aria-label="Ferma.kz — на главную"
+      className={cn("inline-flex shrink-0 items-center transition-opacity hover:opacity-85", className)}
+    >
+      <LogoImage variant="dark" className={cn("h-9 md:h-11", light ? "hidden" : "dark:hidden")} />
+      <LogoImage variant="light" className={cn("h-9 md:h-11", light ? "block" : "hidden dark:block")} />
     </Link>
+  );
+}
+
+function LogoImage({ variant, className }: { variant: "dark" | "light"; className?: string }) {
+  const name = variant === "light" ? "logo-light" : "logo";
+  return (
+    <img
+      src={`/brand/${name}-96.webp`}
+      srcSet={`/brand/${name}-96.webp 1x, /brand/${name}-192.webp 2x`}
+      alt="Ferma.kz"
+      width={328}
+      height={96}
+      decoding="async"
+      className={cn("w-auto select-none", className)}
+      draggable={false}
+    />
   );
 }

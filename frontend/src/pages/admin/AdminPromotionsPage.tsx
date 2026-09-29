@@ -188,7 +188,7 @@ export function AdminPromotionsPage() {
               <div key={p.id} className="flex flex-wrap items-center gap-3 p-4">
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-md bg-emerald-500/10 px-2.5 py-1 font-mono text-sm font-bold tracking-wider text-emerald-800 dark:text-emerald-400">
+                    <span className="rounded-md bg-brand-500/10 px-2.5 py-1 font-mono text-sm font-bold tracking-wider text-brand-800 dark:text-brand-400">
                       {p.code}
                     </span>
                     <Badge variant="success">−{p.discount_percent}%</Badge>
@@ -307,7 +307,7 @@ export function AdminPromotionsPage() {
                 className={cn(
                   "flex h-11 w-full items-center justify-between rounded-xl border px-3.5 text-sm font-medium transition-colors",
                   form.is_active
-                    ? "border-emerald-500 bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300"
+                    ? "border-brand-500 bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300"
                     : "border-border bg-muted text-muted-foreground",
                 )}
               >
@@ -315,7 +315,7 @@ export function AdminPromotionsPage() {
                 <span
                   className={cn(
                     "relative h-5 w-9 rounded-full transition-colors",
-                    form.is_active ? "bg-emerald-500" : "bg-muted-foreground/30",
+                    form.is_active ? "bg-brand-500" : "bg-muted-foreground/30",
                   )}
                 >
                   <span

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { cn, initials } from "@/lib/utils";
 
 const COLORS = [
-  "bg-emerald-600",
+  "bg-brand-600",
   "bg-teal-600",
   "bg-lime-600",
   "bg-amber-600",

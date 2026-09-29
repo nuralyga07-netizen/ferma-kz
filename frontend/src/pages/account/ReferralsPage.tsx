@@ -53,7 +53,7 @@ export function ReferralsPage() {
       {/* Инвайт */}
       <div className="mt-6 rounded-2xl border border-border bg-card p-5 shadow-xs sm:p-6">
         <h2 className="flex items-center gap-2 text-base font-semibold text-foreground">
-          <Gift className="h-5 w-5 text-emerald-700 dark:text-emerald-500" />
+          <Gift className="h-5 w-5 text-brand-700 dark:text-brand-500" />
           Ваш реферальный код
         </h2>
         <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -98,7 +98,7 @@ export function ReferralsPage() {
 
       {/* Приглашённые */}
       <h2 className="mb-4 mt-8 flex items-center gap-2 text-lg font-semibold tracking-tight text-foreground">
-        <Users className="h-5 w-5 text-emerald-700 dark:text-emerald-500" />
+        <Users className="h-5 w-5 text-brand-700 dark:text-brand-500" />
         Приглашённые
       </h2>
       {loading ? (
@@ -126,7 +126,7 @@ export function ReferralsPage() {
                 <p className="text-xs text-muted-foreground">{formatDate(r.created_at)}</p>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-sm font-semibold text-emerald-700 dark:text-emerald-500">
+                <span className="text-sm font-semibold text-brand-700 dark:text-brand-500">
                   +{r.reward_amount} XP
                 </span>
                 <Badge variant={r.status === "rewarded" ? "success" : "warning"}>

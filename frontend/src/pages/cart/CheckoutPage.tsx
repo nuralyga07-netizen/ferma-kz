@@ -215,7 +215,7 @@ export function CheckoutPage() {
                 </Button>
               </div>
               {promoApplied && (
-                <p className="mt-1.5 text-xs text-emerald-700 dark:text-emerald-500">
+                <p className="mt-1.5 text-xs text-brand-700 dark:text-brand-500">
                   {promoApplied} будет проверен при оформлении
                 </p>
               )}
@@ -269,14 +269,14 @@ function MethodCard({
       className={cn(
         "flex items-start gap-3 rounded-xl border p-3.5 text-left transition-all outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
         active
-          ? "border-emerald-600/40 bg-emerald-500/5 ring-1 ring-emerald-600/20 dark:bg-emerald-500/10"
+          ? "border-brand-600/40 bg-brand-500/5 ring-1 ring-brand-600/20 dark:bg-brand-500/10"
           : "border-input hover:bg-accent",
       )}
     >
       <span
         className={cn(
           "mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors",
-          active ? "bg-emerald-600 text-white" : "bg-muted text-muted-foreground",
+          active ? "bg-brand-600 text-white" : "bg-muted text-muted-foreground",
         )}
       >
         {icon}

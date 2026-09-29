@@ -13,8 +13,8 @@ type Variant =
 
 const variants: Record<Variant, string> = {
   default: "border-transparent bg-muted text-muted-foreground",
-  primary: "border-transparent bg-emerald-500/12 text-emerald-700 dark:text-emerald-400",
-  success: "border-transparent bg-emerald-500/12 text-emerald-700 dark:text-emerald-400",
+  primary: "border-transparent bg-brand-500/12 text-brand-700 dark:text-brand-400",
+  success: "border-transparent bg-brand-500/12 text-brand-700 dark:text-brand-400",
   warning: "border-transparent bg-amber-500/15 text-amber-700 dark:text-amber-400",
   danger: "border-transparent bg-rose-500/12 text-rose-700 dark:text-rose-400",
   info: "border-transparent bg-blue-500/12 text-blue-700 dark:text-blue-400",

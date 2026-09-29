@@ -36,7 +36,7 @@ export function ForgotPasswordPage() {
       subtitle="Укажите email — и мы пришлём инструкции"
       footer={
         <p>
-          <Link to="/login" className="font-semibold text-emerald-400 hover:underline">
+          <Link to="/login" className="font-semibold text-brand-400 hover:underline">
             ← Вернуться ко входу
           </Link>
         </p>
@@ -44,8 +44,8 @@ export function ForgotPasswordPage() {
     >
       {sent ? (
         <div className="space-y-4 text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-500/15">
-            <Mail className="h-7 w-7 text-emerald-600 dark:text-emerald-400" />
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-500/15">
+            <Mail className="h-7 w-7 text-brand-600 dark:text-brand-400" />
           </div>
           <p className="text-sm text-muted-foreground">
             Если аккаунт <span className="font-medium text-foreground">{email}</span> существует,

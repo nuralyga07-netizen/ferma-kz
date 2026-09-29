@@ -59,7 +59,7 @@ export function FarmerDashboardPage() {
       label: "Доставлено",
       value: String(delivered.length),
       icon: <Package className="h-5 w-5" />,
-      tint: "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10",
+      tint: "text-brand-600 dark:text-brand-400 bg-brand-500/10",
     },
     {
       label: "Выручка",
@@ -104,7 +104,7 @@ export function FarmerDashboardPage() {
       {/* Быстрые ссылки */}
       <div className="mt-4 grid gap-3 sm:grid-cols-3">
         <Link to="/farmer/products" className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 shadow-xs transition-all hover:-translate-y-0.5 hover:border-muted-foreground/25 hover:shadow-md">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/10 text-brand-600 dark:text-brand-400">
             <Leaf className="h-5 w-5" />
           </span>
           <div>

@@ -98,7 +98,7 @@ export function TermsPage() {
           Вопросы по оферте? Напишите нам:{" "}
           <Link
             to="/about"
-            className="font-medium text-emerald-700 underline-offset-4 hover:underline dark:text-emerald-500"
+            className="font-medium text-brand-700 underline-offset-4 hover:underline dark:text-brand-500"
           >
             страница «О нас»
           </Link>{" "}

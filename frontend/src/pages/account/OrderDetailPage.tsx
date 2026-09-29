@@ -65,7 +65,7 @@ export function OrderDetailPage() {
         <p className="text-lg font-semibold text-foreground">Заказ не найден</p>
         <Link
           to="/account/orders"
-          className="mt-3 inline-block text-sm font-medium text-emerald-700 hover:underline dark:text-emerald-500"
+          className="mt-3 inline-block text-sm font-medium text-brand-700 hover:underline dark:text-brand-500"
         >
           ← К заказам
         </Link>
@@ -169,7 +169,7 @@ export function OrderDetailPage() {
               <div className="min-w-0">
                 <Link
                   to={`/product/${it.product_id}`}
-                  className="font-medium text-foreground hover:text-emerald-600 dark:hover:text-emerald-400"
+                  className="font-medium text-foreground hover:text-brand-600 dark:hover:text-brand-400"
                 >
                   {it.product_name}
                 </Link>
@@ -285,7 +285,7 @@ function Row({ k, v, accent }: { k: string; v: string; accent?: boolean }) {
   return (
     <div className="flex justify-between">
       <dt className="text-muted-foreground">{k}</dt>
-      <dd className={cn("font-medium", accent && "text-emerald-600 dark:text-emerald-400")}>{v}</dd>
+      <dd className={cn("font-medium", accent && "text-brand-600 dark:text-brand-400")}>{v}</dd>
     </div>
   );
 }

@@ -44,6 +44,25 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
+  /* Зелень из логотипа — вместо emerald во всех акцентах. */
+  --color-brand-50: oklch(0.97 0.02 140);
+  --color-brand-100: oklch(0.935 0.04 140);
+  --color-brand-200: oklch(0.875 0.07 142);
+  --color-brand-300: oklch(0.8 0.1 143);
+  --color-brand-400: oklch(0.71 0.12 144);
+  --color-brand-500: oklch(0.6 0.12 145);
+  --color-brand-600: oklch(0.5 0.11 146);
+  --color-brand-700: oklch(0.42 0.095 147);
+  --color-brand-800: oklch(0.35 0.075 148);
+  --color-brand-900: oklch(0.29 0.06 148);
+  --color-brand-950: oklch(0.2 0.04 150);
+
+  /* Тёмные «земляные» секции (витрина, CTA) — одинаковы в обеих темах. */
+  --color-bark: #1f1a15;
+  --color-bark-soft: #2a231c;
+  --color-cream: #efe6d8;
+  --color-rust: #e0703a;
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -52,98 +71,98 @@
   --radius-3xl: calc(var(--radius) * 2.2);
 }
 
-/* ── Светлая тема (Vercel-style) ─────────────────── */
+/* ── Светлая тема: крем и тёмная кора, ржавый акцент ── */
 :root {
   --radius: 0.625rem;
 
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --background: oklch(0.962 0.012 80);
+  --foreground: oklch(0.235 0.02 55);
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card: oklch(0.985 0.006 80);
+  --card-foreground: oklch(0.235 0.02 55);
 
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
+  --popover: oklch(0.985 0.006 80);
+  --popover-foreground: oklch(0.235 0.02 55);
 
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.5 0.14 42);
+  --primary-foreground: oklch(0.975 0.01 80);
 
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.925 0.018 78);
+  --secondary-foreground: oklch(0.28 0.02 55);
 
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.508 0 0);
+  --muted: oklch(0.925 0.018 78);
+  --muted-foreground: oklch(0.5 0.03 60);
 
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --accent: oklch(0.915 0.02 76);
+  --accent-foreground: oklch(0.28 0.02 55);
 
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.55 0.2 27);
   --destructive-foreground: oklch(0.985 0 0);
 
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.885 0.02 76);
+  --input: oklch(0.87 0.022 76);
+  --ring: oklch(0.5 0.14 42 / 60%);
 
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --chart-1: oklch(0.5 0.14 42);
+  --chart-2: oklch(0.45 0.09 145);
+  --chart-3: oklch(0.7 0.13 70);
+  --chart-4: oklch(0.55 0.05 60);
+  --chart-5: oklch(0.35 0.03 55);
 
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: oklch(0.945 0.015 78);
+  --sidebar-foreground: oklch(0.235 0.02 55);
+  --sidebar-primary: oklch(0.5 0.14 42);
+  --sidebar-primary-foreground: oklch(0.975 0.01 80);
+  --sidebar-accent: oklch(0.915 0.02 76);
+  --sidebar-accent-foreground: oklch(0.28 0.02 55);
+  --sidebar-border: oklch(0.885 0.02 76);
+  --sidebar-ring: oklch(0.5 0.14 42 / 60%);
 }
 
-/* ── Тёмная тема (Vercel-style) ──────────────────── */
+/* ── Тёмная тема: коричневая ночь ────────────────── */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
+  --background: oklch(0.2 0.012 60);
+  --foreground: oklch(0.93 0.02 80);
 
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
+  --card: oklch(0.24 0.014 60);
+  --card-foreground: oklch(0.93 0.02 80);
 
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.24 0.014 60);
+  --popover-foreground: oklch(0.93 0.02 80);
 
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
+  --primary: oklch(0.64 0.15 45);
+  --primary-foreground: oklch(0.18 0.012 55);
 
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.285 0.016 60);
+  --secondary-foreground: oklch(0.93 0.02 80);
 
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
+  --muted: oklch(0.285 0.016 60);
+  --muted-foreground: oklch(0.72 0.025 72);
 
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --accent: oklch(0.3 0.018 60);
+  --accent-foreground: oklch(0.93 0.02 80);
 
-  --destructive: oklch(0.704 0.191 22.216);
+  --destructive: oklch(0.68 0.18 25);
   --destructive-foreground: oklch(0.985 0 0);
 
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --border: oklch(0.93 0.02 80 / 11%);
+  --input: oklch(0.93 0.02 80 / 16%);
+  --ring: oklch(0.64 0.15 45 / 60%);
 
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --chart-1: oklch(0.64 0.15 45);
+  --chart-2: oklch(0.65 0.11 145);
+  --chart-3: oklch(0.78 0.13 75);
+  --chart-4: oklch(0.6 0.04 65);
+  --chart-5: oklch(0.45 0.03 60);
 
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.556 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar: oklch(0.225 0.013 60);
+  --sidebar-foreground: oklch(0.93 0.02 80);
+  --sidebar-primary: oklch(0.64 0.15 45);
+  --sidebar-primary-foreground: oklch(0.18 0.012 55);
+  --sidebar-accent: oklch(0.3 0.018 60);
+  --sidebar-accent-foreground: oklch(0.93 0.02 80);
+  --sidebar-border: oklch(0.93 0.02 80 / 11%);
+  --sidebar-ring: oklch(0.64 0.15 45 / 60%);
 }
 
 @layer base {
@@ -168,7 +187,7 @@
   }
 
   ::selection {
-    background: oklch(0.596 0.145 163.225 / 25%);
+    background: oklch(0.64 0.15 45 / 28%);
   }
 
   /* Тонкий скроллбар */
@@ -219,7 +238,7 @@ html.ferma-intro-active body {
   overflow: hidden;
   background:
     radial-gradient(circle at 78% 22%, rgb(238 161 40 / 20%), transparent 28%),
-    linear-gradient(145deg, #f9fbf5 0%, #eef5e9 50%, #fff8eb 100%);
+    linear-gradient(145deg, #f7f1e7 0%, #efe6d8 55%, #f6ead8 100%);
   color: #173f2a;
   animation: ferma-intro-in 420ms ease-out both;
 }
@@ -243,8 +262,9 @@ html.ferma-intro-active body {
   width: clamp(10rem, 22vw, 22rem);
   aspect-ratio: 1;
   border-radius: 999px;
-  background: #efa128;
-  filter: blur(1px);
+  /* У логотипа своё солнце — здесь только мягкое тёплое свечение позади. */
+  background: radial-gradient(circle, rgb(239 161 40 / 42%) 0%, rgb(239 161 40 / 14%) 55%, rgb(239 161 40 / 0%) 72%);
+  filter: blur(10px);
   opacity: 0;
   transform: scale(.15);
   animation: ferma-sun-rise 1.25s .35s cubic-bezier(.16, 1, .3, 1) forwards;
@@ -262,7 +282,7 @@ html.ferma-intro-active body {
   font-size: clamp(.65rem, 1vw, .8rem);
   font-weight: 700;
   letter-spacing: .28em;
-  color: #39664b;
+  color: #6b5a48;
   opacity: 0;
   transform: translateY(12px);
   animation: ferma-detail-in 650ms 1.15s ease-out forwards;
@@ -283,13 +303,18 @@ html.ferma-intro-active body {
   animation: ferma-wordmark-in 1.55s .12s cubic-bezier(.16, 1, .3, 1) forwards;
 }
 
-.ferma-intro__ferma {
-  color: #174f31;
+.ferma-intro__logo {
+  width: min(82vw, 720px);
+  height: auto;
 }
 
-.ferma-intro__kz {
-  margin-left: .08em;
-  color: #d96718;
+.ferma-intro__logo--light,
+.dark .ferma-intro__logo--dark {
+  display: none;
+}
+
+.dark .ferma-intro__logo--light {
+  display: block;
 }
 
 .ferma-intro__field {
@@ -355,7 +380,7 @@ html.ferma-intro-active body {
 .dark .ferma-intro {
   background:
     radial-gradient(circle at 78% 22%, rgb(238 161 40 / 16%), transparent 30%),
-    linear-gradient(145deg, #0b140f 0%, #102019 50%, #1a1710 100%);
+    linear-gradient(145deg, #17120e 0%, #1f1a15 50%, #251d15 100%);
   color: #e6f1e9;
 }
 
@@ -376,15 +401,7 @@ html.ferma-intro-active body {
 }
 
 .dark .ferma-intro__eyebrow {
-  color: #e0efe5;
-}
-
-.dark .ferma-intro__ferma {
-  color: #5ec98a;
-}
-
-.dark .ferma-intro__kz {
-  color: #f2803a;
+  color: #d9ccb8;
 }
 
 .dark .ferma-intro__field {
