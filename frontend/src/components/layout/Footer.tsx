@@ -22,8 +22,8 @@ export function Footer() {
         <div className="max-w-xs space-y-4">
           <Logo />
           <p className="text-sm leading-relaxed text-muted-foreground">
-            Свежие фермерские продукты от проверенных хозяйств Актюбинской области.
-            Без посредников — с поля до вашего стола.
+            Ранний AgriTech MVP из Актобе. Развиваем сайт, аудиторию и готовим
+            следующий пилот вместе с местными производителями.
           </p>
         </div>
 
@@ -68,8 +68,8 @@ export function Footer() {
             </li>
             <li className="flex items-center gap-2.5">
               <Phone className="h-4 w-4 shrink-0 text-brand-600 dark:text-brand-500" />
-              <a href="tel:+77000000000" className="transition-colors hover:text-foreground">
-                +7 (700) 000-00-00
+              <a href="tel:+77754733804" className="transition-colors hover:text-foreground">
+                +7 (775) 473-38-04
               </a>
             </li>
             <li className="flex items-center gap-2.5">
