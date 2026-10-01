@@ -88,8 +88,8 @@ export function HomePage() {
             </h1>
 
             <p className="mt-5 max-w-xl text-base leading-relaxed text-white/90 sm:text-lg">
-              Мясо, молоко, овощи, мёд и домашняя выпечка — напрямую от проверенных
-              хозяйств. Закажите сегодня — завтра на вашем столе.
+              Ferma.kz развивает цифровую площадку местных продуктов в Актобе.
+              Сейчас мы собираем аудиторию и готовим следующий пилот.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -176,8 +176,8 @@ export function HomePage() {
               У вас своё хозяйство?
             </h2>
             <p className="mt-5 max-w-md text-base leading-relaxed text-cream/85 sm:text-lg">
-              Продавайте мясо, молоко и урожай напрямую покупателям. Размещение
-              бесплатное, цены назначаете сами.
+              Оставьте заявку на участие в будущем пилоте Ferma.kz. Условия
+              сотрудничества согласовываются с каждым хозяйством отдельно.
             </p>
             <Link to="/register" className="mt-9 inline-block">
               <Button size="lg" rightIcon={<ArrowRight className="h-4 w-4" />}>

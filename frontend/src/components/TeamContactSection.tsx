@@ -16,7 +16,7 @@ interface Contact {
 
 const CONTACTS: Contact[] = [
   { icon: Mail, label: "Почта", value: SUPPORT_EMAIL, href: `mailto:${SUPPORT_EMAIL}` },
-  { icon: Phone, label: "Телефон", value: "+7 (700) 000-00-00", href: "tel:+77000000000" },
+  { icon: Phone, label: "Телефон", value: "+7 (775) 473-38-04", href: "tel:+77754733804" },
   { icon: Tractor, label: "Фермерам", value: "Подключить своё хозяйство", href: "/register" },
 ];
 
