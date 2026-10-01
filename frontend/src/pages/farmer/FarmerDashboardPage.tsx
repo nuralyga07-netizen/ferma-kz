@@ -73,7 +73,7 @@ export function FarmerDashboardPage() {
     <Container className="max-w-5xl pb-16 pt-8 sm:pt-10">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Кабинет фермера</h1>
+          <h1 className="text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl">Кабинет фермера</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             {user?.farm_name || user?.full_name} · {user?.city}
           </p>

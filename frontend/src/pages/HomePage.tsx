@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowRight, Store, Star } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { FarmHeroSection } from "@/components/ui/farm-hero-section";
 import { Skeleton } from "@/components/ui/skeleton";
+import { FaqSection } from "@/components/FaqSection";
+import { TeamContactSection } from "@/components/TeamContactSection";
 import { ProductCard } from "@/components/ProductCard";
-import { SectionHead } from "@/components/SectionHead";
 import { ShowcaseSection } from "@/components/ShowcaseSection";
 import { api } from "@/lib/api";
-import type { Farmer, Product } from "@/types";
+import type { Product } from "@/types";
 
 /**
  * Степь с ковылём на закате (Pexels #4189161, бесплатная лицензия).
@@ -24,29 +25,33 @@ const HERO_VIDEO = [
   { src: "/hero/hero-1080.mp4" },
 ];
 
+/**
+ * Коровы на пастбище на закате (Pexels #422218, бесплатная лицензия).
+ * Кадр отзеркален, чтобы стадо стояло справа, а текст ложился на тёмную левую часть.
+ */
+const FARM_CTA_IMAGE = "/farm/pasture-1920.webp";
+const FARM_CTA_SRCSET = "/farm/pasture-960.webp 960w, /farm/pasture-1920.webp 1920w";
+
 /** Хиты продаж: сетка 4×2 на десктопе. */
 const HITS_COUNT = 8;
 
 export function HomePage() {
   const [featured, setFeatured] = useState<Product[]>([]);
-  const [farmers, setFarmers] = useState<Farmer[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let alive = true;
     (async () => {
       try {
-        const [feat, rest, far] = await Promise.all([
+        const [feat, rest] = await Promise.all([
           api.listProducts({ featured: true, limit: HITS_COUNT }),
           api.listProducts({ limit: HITS_COUNT * 2 }),
-          api.listFarmers("", 6, 0),
         ]);
         if (!alive) return;
         // Сетка 4×2 должна быть полной: если хитов меньше, добираем обычными товарами.
         const seen = new Set(feat.items.map((p) => p.id));
         const fill = rest.items.filter((p) => !seen.has(p.id));
         setFeatured([...feat.items, ...fill].slice(0, HITS_COUNT));
-        setFarmers(far);
       } finally {
         if (alive) setLoading(false);
       }
@@ -151,68 +156,43 @@ export function HomePage() {
         )}
       </Container>
 
-      {/* ── Фермеры ──────────────────────────────── */}
-      <Container className="pb-14">
-        <SectionHead title="Наши фермеры" subtitle="Люди, которым можно доверять" linkTo="/farmers" />
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {loading
-            ? Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-24 rounded-xl" />)
-            : farmers.map((f) => (
-                <Link
-                  key={f.id}
-                  to={`/farmers/${f.id}`}
-                  className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 shadow-xs transition-all hover:-translate-y-0.5 hover:border-muted-foreground/25 hover:shadow-md"
-                >
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-600 text-lg font-semibold text-white">
-                    {(f.farm_name ?? f.full_name).slice(0, 1)}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-semibold text-foreground">
-                      {f.farm_name ?? f.full_name}
-                    </p>
-                    <p className="truncate text-xs text-muted-foreground">
-                      {f.full_name} · {f.city}
-                    </p>
-                    <p className="mt-1 flex items-center gap-1 text-xs font-medium text-foreground">
-                      <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-                      {f.rating ? f.rating.toFixed(1) : "Новый"}
-                      <span className="text-muted-foreground">
-                        · {f.product_count} тов.
-                      </span>
-                    </p>
-                  </div>
-                  <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground/50" />
-                </Link>
-              ))}
-        </div>
-      </Container>
-
-      {/* ── CTA фермерам (тёмная панель) ─────────── */}
-      <Container className="pb-20">
-        <div className="relative overflow-hidden rounded-2xl bg-bark px-6 py-14 text-center sm:px-12 border border-white/10">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_50%_0%,rgb(224_112_58/0.2),transparent)]"
-          />
-          <div className="relative mx-auto max-w-xl">
-            <span className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5">
-              <Store className="h-6 w-6 text-brand-400" />
-            </span>
-            <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+      {/* ── CTA фермерам: полноэкранный кадр ─────── */}
+      <FarmHeroSection
+        imageSrc={FARM_CTA_IMAGE}
+        srcSet={FARM_CTA_SRCSET}
+        sizes="100vw"
+        imagePosition="70% center"
+        overlay="left"
+        overlayStrength={0.92}
+      >
+        {/* Низ кадра растворяется в зелёном фоне следующей секции. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-brand-900 lg:h-40"
+        />
+        <Container className="relative flex min-h-[100svh] items-end pb-24 pt-24 sm:pb-32 lg:items-center lg:pb-0 lg:pt-0">
+          <div className="max-w-xl">
+            <h2 className="text-4xl font-semibold leading-[1.05] tracking-tight text-cream sm:text-5xl lg:text-6xl">
               У вас своё хозяйство?
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-cream/65 sm:text-base">
-              Присоединяйтесь к Ferma.kz и продавайте продукцию напрямую покупателям.
-              Без комиссий за размещение и рекламы.
+            <p className="mt-5 max-w-md text-base leading-relaxed text-cream/85 sm:text-lg">
+              Продавайте мясо, молоко и урожай напрямую покупателям. Размещение
+              бесплатное, цены назначаете сами.
             </p>
-            <Link to="/register" className="mt-7 inline-block">
-              <Button size="lg" variant="glass">
+            <Link to="/register" className="mt-9 inline-block">
+              <Button size="lg" rightIcon={<ArrowRight className="h-4 w-4" />}>
                 Стать фермером
               </Button>
             </Link>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </FarmHeroSection>
+
+      {/* ── Частые вопросы ───────────────────────── */}
+      <FaqSection />
+
+      {/* ── Поговорить с командой ────────────────── */}
+      <TeamContactSection />
     </div>
   );
 }

@@ -155,7 +155,7 @@ export function AdminPromotionsPage() {
     <Container className="max-w-4xl pb-16 pt-8 sm:pt-10">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Промокоды</h1>
+          <h1 className="text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl">Промокоды</h1>
           <p className="mt-1 text-sm text-muted-foreground">Скидки при оформлении заказа</p>
         </div>
         <Button leftIcon={<Plus className="h-4 w-4" />} onClick={openCreate}>

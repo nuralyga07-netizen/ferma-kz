@@ -38,14 +38,14 @@ export function ProductCard({
         </div>
 
         <div className="absolute left-2.5 top-2.5 flex flex-col items-start gap-1.5">
-          {product.is_featured && <Badge variant="primary">Хит</Badge>}
+          {product.is_featured && <Badge className="border-transparent bg-primary text-primary-foreground shadow-sm">Хит</Badge>}
           {product.organic && (
-            <Badge variant="success">
+            <Badge className="border-transparent bg-brand-700 text-white shadow-sm">
               <Leaf className="h-3 w-3" /> Эко
             </Badge>
           )}
           {product.old_price && product.old_price > product.price && (
-            <Badge variant="danger">
+            <Badge className="border-transparent bg-rose-600 text-white shadow-sm">
               −{Math.round((1 - product.price / product.old_price) * 100)}%
             </Badge>
           )}

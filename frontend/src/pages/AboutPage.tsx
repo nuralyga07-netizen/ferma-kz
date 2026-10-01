@@ -1,172 +1,125 @@
 import { Link } from "react-router-dom";
-import { CheckCircle2, HeartHandshake, Leaf, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { FarmHeroSection } from "@/components/ui/farm-hero-section";
 
-const FAQ = [
-  {
-    q: "Откуда берутся продукты?",
-    a: "Только от фермеров Актюбинской области и соседних регионов. Каждое хозяйство проходит модерацию: мы проверяем документы, при необходимости выезжаем на место и следим за рейтингом.",
-  },
-  {
-    q: "Как быстро доставят?",
-    a: "Заказы, оформленные до 14:00, доставляем на следующий день по Актобе. Самовывоз с фермы возможен в согласованный с фермером день.",
-  },
-  {
-    q: "Сколько стоит доставка?",
-    a: "500 ₸ по городу, бесплатно при заказе от 10 000 ₸ или при самовывозе. Заказ из нескольких ферм — одна доставка на все хозяйства.",
-  },
-  {
-    q: "Можно ли вернуть товар?",
-    a: "Да. Если продукт не соответствует описанию или испорчен — сфотографируйте его, напишите в чат или позвоните. Вернём деньги или заменим товар.",
-  },
-  {
-    q: "Как стать фермером на платформе?",
-    a: "Зарегистрируйтесь, выберите роль «Фермер» и заполните заявку: хозяйство, продукция, контакты. После одобрения администрацией вы сможете добавлять товары и принимать заказы.",
-  },
-  {
-    q: "Есть ли скидки?",
-    a: "Да, у нас работают промокоды (например, FARMA10 — 10% от 3 000 ₸). Также часть ферм сами назначают скидки на сезонные товары.",
-  },
+/** Пшеничное поле на закате (Unsplash 1500382017468, бесплатная лицензия). */
+const HERO_IMAGE = "/farm/field-1920.webp";
+const HERO_SRCSET = "/farm/field-960.webp 960w, /farm/field-1920.webp 1920w";
+
+const STEPS = [
+  { title: "Проверка", text: "Модерируем каждое хозяйство: документы, место, продукция." },
+  { title: "Покупка", text: "Выбираете товары у разных ферм — одна корзина, одна доставка." },
+  { title: "Доставка", text: "Фермер готовит, мы привозим на следующий день или самовывоз." },
+  { title: "Обратная связь", text: "Оставляете отзыв — он попадает в рейтинг фермера." },
 ];
+
+const STATS = [
+  { value: "6+", label: "ферм-партнёров" },
+  { value: "10", label: "категорий товаров" },
+  { value: "48 ч", label: "от грядки до двери" },
+  { value: "100%", label: "местных производителей" },
+];
+
+const h2Class =
+  "text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl";
 
 export function AboutPage() {
   return (
-    <div className="pb-16">
-      {/* Hero */}
-      <section className="border-b border-border">
-        <Container className="py-16 text-center sm:py-20">
-          <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-background px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-xs">
-            <Leaf className="h-3.5 w-3.5 text-brand-600 dark:text-brand-500" /> О нас
-          </span>
-          <h1 className="mx-auto max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Фермерские продукты — без посредников
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            Ferma.kz — маркетплейс фермерских продуктов Актюбинской области.
-            Мы соединяем проверенные хозяйства и жителей города: вы получаете
-            свежее мясо, молоко, овощи и выпечку, а фермеры — стабильный спрос
-            без комиссий торговых сетей.
-          </p>
+    <div>
+      {/* ── Hero ─────────────────────────────────── */}
+      <FarmHeroSection
+        imageSrc={HERO_IMAGE}
+        srcSet={HERO_SRCSET}
+        sizes="100vw"
+        imagePosition="center 60%"
+        overlay="left"
+        overlayStrength={0.72}
+      >
+        {/* Хедер лежит поверх кадра, поэтому отступ сверху под него. */}
+        <Container className="flex h-[100svh] min-h-[520px] items-center pt-16 md:pt-20">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Фермерские продукты
+              <br />
+              без посредников
+            </h1>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/90 sm:text-lg">
+              Ferma.kz — маркетплейс фермерских продуктов Актюбинской области.
+              Мы соединяем проверенные хозяйства и жителей города: вы получаете
+              свежее мясо, молоко, овощи и выпечку, а фермеры — стабильный спрос
+              без комиссий торговых сетей.
+            </p>
+          </div>
+        </Container>
+      </FarmHeroSection>
+
+      {/* ── Миссия ───────────────────────────────── */}
+      <Container className="grid gap-8 py-16 sm:py-24 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
+        <h2 className={h2Class}>Наша миссия</h2>
+        <p className="text-xl leading-relaxed text-foreground sm:text-2xl sm:leading-relaxed">
+          Сделать так, чтобы в каждой семье Актобе был доступ к свежим
+          продуктам от честных производителей. Мы не храним товар на складах —
+          заказы формируются напрямую на фермах, поэтому на столе у вас
+          оказывается то, что собрано или приготовлено вчера.
+        </p>
+      </Container>
+
+      {/* ── Как работаем ─────────────────────────── */}
+      <section className="bg-bark text-cream">
+        <Container className="py-16 sm:py-24">
+          <h2 className="text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+            Как это работает
+          </h2>
+          <ol className="mt-10 grid gap-x-10 sm:mt-14 sm:grid-cols-2 lg:grid-cols-4">
+            {STEPS.map((s, i) => (
+              <li key={s.title} className="border-t border-cream/15 py-6">
+                <span className="text-4xl font-semibold tracking-tight text-rust sm:text-5xl">{i + 1}</span>
+                <h3 className="mt-5 text-xl font-semibold tracking-tight sm:text-2xl">{s.title}</h3>
+                <p className="mt-2 text-base leading-relaxed text-cream/70">{s.text}</p>
+              </li>
+            ))}
+          </ol>
         </Container>
       </section>
 
-      <Container>
-        {/* Миссия */}
-        <div className="mx-auto mt-14 max-w-3xl text-center">
-          <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-            Наша миссия
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Сделать так, чтобы в каждой семье Актобе был доступ к свежим
-            продуктам от честных производителей. Мы не храним товар на складах —
-            заказы формируются напрямую на фермах, поэтому на столе у вас
-            оказывается то, что собрано или приготовлено вчера.
-          </p>
-        </div>
+      {/* ── Цифры ────────────────────────────────── */}
+      <Container className="py-16 sm:py-24">
+        <h2 className={h2Class}>Ferma.kz в цифрах</h2>
+        <dl className="mt-10 grid grid-cols-2 gap-x-10 sm:mt-14 lg:grid-cols-4">
+          {STATS.map((s) => (
+            <div key={s.label} className="flex flex-col-reverse border-t border-border py-6">
+              <dt className="mt-2 text-base text-muted-foreground">{s.label}</dt>
+              <dd className="text-5xl font-semibold tracking-tight text-foreground sm:text-6xl">{s.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </Container>
 
-        {/* Как работаем */}
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <Step
-            icon={<ShieldCheck className="h-5 w-5" />}
-            title="1. Проверка"
-            text="Модерируем каждое хозяйство: документы, место, продукция."
-          />
-          <Step
-            icon={<HeartHandshake className="h-5 w-5" />}
-            title="2. Покупка"
-            text="Выбираете товары у разных ферм — одна корзина, одна доставка."
-          />
-          <Step
-            icon={<Truck className="h-5 w-5" />}
-            title="3. Доставка"
-            text="Фермер готовит, мы привозим на следующий день или самовывоз."
-          />
-          <Step
-            icon={<CheckCircle2 className="h-5 w-5" />}
-            title="4. Обратная связь"
-            text="Оставляете отзыв — он попадает в рейтинг фермера."
-          />
-        </div>
-
-        {/* Цифры */}
-        <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-          <Stat value="6+" label="ферм-партнёров" />
-          <Stat value="10" label="категорий товаров" />
-          <Stat value="48 ч" label="от грядки до двери" />
-          <Stat value="100%" label="местных производителей" />
-        </div>
-
-        {/* FAQ */}
-        <div className="mx-auto mt-16 max-w-3xl">
-          <h2 className="mb-6 text-center text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-            Частые вопросы
-          </h2>
-          <div className="space-y-3">
-            {FAQ.map((f) => (
-              <details
-                key={f.q}
-                className="group rounded-xl border border-border bg-card p-5 shadow-xs open:shadow-sm"
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-foreground [&::-webkit-details-marker]:hidden">
-                  {f.q}
-                  <span className="shrink-0 text-lg leading-none text-muted-foreground transition-transform group-open:rotate-45">
-                    +
-                  </span>
-                </summary>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div className="relative mt-16 overflow-hidden rounded-2xl bg-bark px-6 py-12 text-center sm:px-12 border border-white/10">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_50%_0%,rgb(224_112_58/0.2),transparent)]"
-          />
-          <div className="relative">
-            <h2 className="text-2xl font-semibold tracking-tight text-white">
-              Попробуйте — это просто
-            </h2>
-            <p className="mx-auto mt-2 max-w-md text-sm text-cream/65">
+      {/* ── CTA ──────────────────────────────────── */}
+      <section className="border-t border-border bg-secondary">
+        <Container className="flex flex-col items-start justify-between gap-8 py-16 sm:py-24 lg:flex-row lg:items-end">
+          <div>
+            <h2 className={h2Class}>Попробуйте — это просто</h2>
+            <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
               Загляните в каталог или познакомьтесь с нашими фермерами.
             </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Link to="/catalog">
-                <Button size="lg">В каталог</Button>
-              </Link>
-              <Link to="/farmers">
-                <Button size="lg" variant="glass">
-                  Наши фермеры
-                </Button>
-              </Link>
-            </div>
           </div>
-        </div>
-      </Container>
-    </div>
-  );
-}
-
-function Step({ icon, title, text }: { icon: React.ReactNode; title: string; text: string }) {
-  return (
-    <div className="rounded-xl border border-border bg-card p-5 shadow-xs">
-      <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-brand-500/10 text-brand-700 dark:text-brand-400">
-        {icon}
-      </span>
-      <h3 className="text-sm font-semibold text-foreground">{title}</h3>
-      <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{text}</p>
-    </div>
-  );
-}
-
-function Stat({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="rounded-xl border border-border bg-card p-5 text-center shadow-xs">
-      <p className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">{value}</p>
-      <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{label}</p>
+          <div className="flex flex-wrap gap-3">
+            <Link to="/catalog">
+              <Button size="lg" rightIcon={<ArrowRight className="h-4 w-4" />}>
+                В каталог
+              </Button>
+            </Link>
+            <Link to="/farmers">
+              <Button size="lg" variant="outline">
+                Наши фермеры
+              </Button>
+            </Link>
+          </div>
+        </Container>
+      </section>
     </div>
   );
 }

@@ -44,7 +44,7 @@ export function AdminOrdersPage() {
 
   return (
     <Container className="max-w-4xl pb-16 pt-8 sm:pt-10">
-      <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Все заказы</h1>
+      <h1 className="text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl">Все заказы</h1>
       <p className="mb-6 text-sm text-muted-foreground">
         {orders.length > 0 && `${orders.length} заказов · ${formatPrice(totalSum)}`}
       </p>

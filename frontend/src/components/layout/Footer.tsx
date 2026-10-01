@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Instagram, MapPin, Phone, Send } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/Logo";
+import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { to: "/catalog", label: "Каталог" },
@@ -16,25 +17,28 @@ const FARMER_LINKS = [
 ];
 
 export function Footer() {
+  // На главной футер продолжает зелёные секции — без отступа, чтобы не было кремовой полосы.
+  const { pathname } = useLocation();
+  const flush = pathname === "/" || pathname === "/about";
   return (
-    <footer className="mt-20 border-t border-border bg-background">
+    <footer className={cn("border-t border-cream/15 bg-brand-900 text-cream", !flush && "mt-20")}>
       <Container className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:py-14">
         <div className="max-w-xs space-y-4">
-          <Logo />
-          <p className="text-sm leading-relaxed text-muted-foreground">
+          <Logo tone="light" />
+          <p className="text-sm leading-relaxed text-cream/70">
             Свежие фермерские продукты от проверенных хозяйств Актюбинской области.
             Без посредников — с поля до вашего стола.
           </p>
         </div>
 
         <div>
-          <h4 className="mb-4 text-sm font-semibold text-foreground">Навигация</h4>
+          <h4 className="mb-4 text-sm font-semibold text-cream">Навигация</h4>
           <ul className="space-y-2.5">
             {NAV_LINKS.map((l) => (
               <li key={l.to}>
                 <Link
                   to={l.to}
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  className="text-sm text-cream/70 transition-colors hover:text-cream"
                 >
                   {l.label}
                 </Link>
@@ -44,13 +48,13 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="mb-4 text-sm font-semibold text-foreground">Фермерам</h4>
+          <h4 className="mb-4 text-sm font-semibold text-cream">Фермерам</h4>
           <ul className="space-y-2.5">
             {FARMER_LINKS.map((l) => (
               <li key={l.to}>
                 <Link
                   to={l.to}
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  className="text-sm text-cream/70 transition-colors hover:text-cream"
                 >
                   {l.label}
                 </Link>
@@ -60,36 +64,36 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="mb-4 text-sm font-semibold text-foreground">Контакты</h4>
-          <ul className="space-y-2.5 text-sm text-muted-foreground">
+          <h4 className="mb-4 text-sm font-semibold text-cream">Контакты</h4>
+          <ul className="space-y-2.5 text-sm text-cream/70">
             <li className="flex items-center gap-2.5">
-              <MapPin className="h-4 w-4 shrink-0 text-brand-600 dark:text-brand-500" />
+              <MapPin className="h-4 w-4 shrink-0 text-brand-300" />
               г. Актобе, Казахстан
             </li>
             <li className="flex items-center gap-2.5">
-              <Phone className="h-4 w-4 shrink-0 text-brand-600 dark:text-brand-500" />
-              <a href="tel:+77000000000" className="transition-colors hover:text-foreground">
+              <Phone className="h-4 w-4 shrink-0 text-brand-300" />
+              <a href="tel:+77000000000" className="transition-colors hover:text-cream">
                 +7 (700) 000-00-00
               </a>
             </li>
             <li className="flex items-center gap-2.5">
-              <Send className="h-4 w-4 shrink-0 text-brand-600 dark:text-brand-500" />
+              <Send className="h-4 w-4 shrink-0 text-brand-300" />
               @ferma_kz
             </li>
             <li className="flex items-center gap-2.5">
-              <Instagram className="h-4 w-4 shrink-0 text-brand-600 dark:text-brand-500" />
+              <Instagram className="h-4 w-4 shrink-0 text-brand-300" />
               @ferma.kz
             </li>
           </ul>
         </div>
       </Container>
 
-      <div className="border-t border-border">
+      <div className="border-t border-cream/15">
         <Container className="flex flex-col items-center justify-between gap-2 py-5 sm:flex-row">
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-cream/70">
             © {new Date().getFullYear()} Ferma.kz — фермерские продукты Актобе
           </p>
-          <p className="text-xs text-muted-foreground">Сделано с заботой о локальных производителях</p>
+          <p className="text-xs text-cream/70">Сделано с заботой о локальных производителях</p>
         </Container>
       </div>
     </footer>

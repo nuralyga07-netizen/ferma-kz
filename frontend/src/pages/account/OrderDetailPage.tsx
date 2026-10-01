@@ -121,7 +121,7 @@ export function OrderDetailPage() {
         {/* Шапка */}
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Заказ №{order.order_number}</h1>
+            <h1 className="text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl">Заказ №{order.order_number}</h1>
             <p className="mt-1 text-sm text-muted-foreground">{formatDateTime(order.created_at)}</p>
           </div>
           <Badge className={cn("border-0 px-3.5 py-1.5 text-sm", ORDER_STATUS_COLORS[order.status])}>

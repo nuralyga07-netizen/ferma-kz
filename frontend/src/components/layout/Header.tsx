@@ -50,8 +50,8 @@ export function Header() {
     user?.role === "admin" ? "/admin" : user?.role === "farmer" ? "/farmer" : "/account/orders";
   const showCart = !user || user.role === "customer";
 
-  // На главной хедер лежит поверх видео и прозрачен, пока страница не прокручена.
-  const isHome = pathname === "/";
+  // На страницах с полноэкранным кадром хедер лежит поверх него и прозрачен, пока страница не прокручена.
+  const isHome = pathname === "/" || pathname === "/about";
   const scrolled = useScrolled(24);
   const clear = isHome && !scrolled && !mobileOpen;
 

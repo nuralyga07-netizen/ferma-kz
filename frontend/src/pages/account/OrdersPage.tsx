@@ -40,7 +40,7 @@ export function OrdersPage() {
 
   return (
     <Container className="max-w-4xl pb-16 pt-8 sm:pt-10">
-      <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+      <h1 className="text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl">
         Мои заказы
       </h1>
 

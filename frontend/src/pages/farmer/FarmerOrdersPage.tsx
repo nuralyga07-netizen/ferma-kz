@@ -45,7 +45,7 @@ export function FarmerOrdersPage() {
 
   return (
     <Container className="max-w-4xl pb-16 pt-8 sm:pt-10">
-      <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Заказы</h1>
+      <h1 className="text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl">Заказы</h1>
       <p className="mb-6 text-sm text-muted-foreground">
         Нажмите на заказ, чтобы посмотреть детали и сменить статус
       </p>

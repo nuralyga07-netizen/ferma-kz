@@ -163,7 +163,7 @@ export function FarmerProductFormPage() {
         <ArrowLeft className="h-4 w-4" /> Назад
       </button>
 
-      <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+      <h1 className="text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl">
         {isEdit ? "Редактировать товар" : "Новый товар"}
       </h1>
 

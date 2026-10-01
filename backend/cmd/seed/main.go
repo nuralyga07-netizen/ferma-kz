@@ -57,6 +57,18 @@ func main() {
 	}
 	defer pool.Close()
 
+	// Фото копируем до проверки на повторный запуск: так они появятся и у уже засеянной базы.
+	uploadDir := os.Getenv("UPLOAD_DIR")
+	if uploadDir == "" {
+		uploadDir = "./storage/uploads"
+	}
+	copied, err := copyDemoImages(uploadDir)
+	if err != nil {
+		slog.Error("copy demo images failed", "err", err)
+		os.Exit(1)
+	}
+	fmt.Printf("Demo images: %d copied to %s\n", copied, uploadDir)
+
 	// Идиотентность: если есть хотя бы один товар — считаем данные уже зосианы.
 	var cnt int
 	if err := pool.QueryRow(ctx, `SELECT COUNT(*)::int FROM products`).Scan(&cnt); err != nil {

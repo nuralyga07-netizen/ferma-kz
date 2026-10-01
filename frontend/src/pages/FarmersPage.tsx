@@ -33,7 +33,7 @@ export function FarmersPage() {
   return (
     <Container className="pb-16 pt-8 sm:pt-10">
       <div className="mb-8 max-w-2xl">
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+        <h1 className="text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           Наши фермеры
         </h1>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">

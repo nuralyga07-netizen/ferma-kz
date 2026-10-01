@@ -62,7 +62,7 @@ export function FarmerProfilePage() {
             className="h-20 w-20 sm:h-24 sm:w-24"
           />
           <div className="min-w-0 flex-1">
-            <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+            <h1 className="text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl">
               {farmer.farm_name ?? farmer.full_name}
             </h1>
             <p className="mt-1 text-sm text-muted-foreground">{farmer.full_name}</p>

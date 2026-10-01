@@ -32,7 +32,7 @@ export function FavoritesPage() {
 
   return (
     <Container className="pb-16 pt-8 sm:pt-10">
-      <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+      <h1 className="text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl">
         Избранное{" "}
         <span className="text-lg font-normal text-muted-foreground sm:text-xl">
           {items.length > 0 && `(${items.length})`}

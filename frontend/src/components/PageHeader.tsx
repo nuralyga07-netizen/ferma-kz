@@ -28,10 +28,10 @@ export function PageHeader({
             {backLabel}
           </Link>
         )}
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+        <h1 className="text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           {title}
         </h1>
-        {subtitle && <p className="mt-1.5 text-sm text-muted-foreground">{subtitle}</p>}
+        {subtitle && <p className="mt-3 text-base text-muted-foreground sm:text-lg">{subtitle}</p>}
       </div>
       {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
     </Container>

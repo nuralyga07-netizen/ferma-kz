@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { ArrowUpDown, LayoutGrid, Search, SlidersHorizontal, X } from "lucide-react";
+import { ArrowUpDown, LayoutGrid, Leaf, Search, SlidersHorizontal, X } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
 import { Pagination } from "@/components/Pagination";
 import { SkeletonCard } from "@/components/ui/skeleton";
@@ -80,7 +80,7 @@ export function CatalogPage() {
       {/* Заголовок */}
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+          <h1 className="text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl">
             Каталог
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
@@ -134,13 +134,14 @@ export function CatalogPage() {
             onClick={() => setParam("organic", organic ? "" : "1")}
             aria-pressed={organic}
             className={cn(
-              "h-9 rounded-lg border px-3.5 text-sm font-medium shadow-xs transition-colors",
+              "inline-flex h-9 items-center gap-1.5 rounded-lg border px-3.5 text-sm font-medium shadow-xs transition-colors",
               organic
                 ? "border-brand-600/30 bg-brand-500/10 text-brand-700 dark:text-brand-400"
                 : "border-input bg-background text-foreground hover:bg-accent",
             )}
           >
-            🌿 Эко
+            <Leaf className="h-3.5 w-3.5" />
+            Эко
           </button>
 
           {/* Цена */}
@@ -167,7 +168,7 @@ export function CatalogPage() {
         </Chip>
         {categories.map((c) => (
           <Chip key={c.id} active={category === c.slug} onClick={() => setParam("category", c.slug)}>
-            {c.icon} {c.name}
+            {c.name}
           </Chip>
         ))}
       </div>
